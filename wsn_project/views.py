@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import *
 from django.http import Http404
 
 def home(request):
@@ -20,11 +20,21 @@ def auth(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect("/account/user/")
+                return HttpResponseRedirect("/" + username + "/")
             else:
                 return HttpResponse("not active")
         else:
-            return HttpResponse("user None")
+            return HttpResponse("bad password")
     else:
         return HttpResponse("no post")
 
+
+def albums(request, name):
+    if not request.user.is_authenticated():
+        return HttpResponse("only see")
+    else:
+        return render_to_response("albums.html", Context({'user':name}))
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect("/")
