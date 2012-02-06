@@ -11,7 +11,8 @@ urlpatterns = patterns('',
     url(r'^$', 'views.home'),
     url(r'^login/$', 'views.auth'),
     #url(r'^(?P<name>\w+)/$', 'views.login'),
-    # url(r'^wsd/', include('wsd.foo.urls')),
+    # url(r'^wsd/', include('wsd.foo.urls'))
+    url(r'^register/$', include('registration.backends.default.urls')),
     
 
     # Uncomment the admin/doc line below to enable admin documentation:
