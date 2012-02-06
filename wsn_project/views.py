@@ -14,6 +14,8 @@ def auth(request):
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')
+        print password
+        print username
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:

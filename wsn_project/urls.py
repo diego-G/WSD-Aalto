@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'views.home'),
     url(r'^login/$', 'views.auth'),
-    url(r'^(?P<name>\w+)/$', 'views.login'),
+    #url(r'^(?P<name>\w+)/$', 'views.login'),
     # url(r'^wsd/', include('wsd.foo.urls')),
     
 
