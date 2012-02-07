@@ -2,15 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% block body %}{% endblock %}
-<div class='footer'>
-{% block footer %}{% endblock %}
-</div>
-<a href="/logout/">Logout</a>
+	{% block body %}{% endblock %}
+	<div class='footer'>{% block footer %}{% endblock %}</div>
+	<a href="/logout/">Logout</a>
 </body>
 </html>

@@ -1,16 +1,12 @@
-{% extends "basic_template.html" %}
-{% block title %}Login{% endblock %}
-{% block body %}
-{% load url from future %}
+{% extends "basic_template.html" %} {% block title %}Login{% endblock %}
+{% block body %} {% load url from future %}
 <form action="login/" method="post">
-{% csrf_token %}
-<label>Username: <input name="username" required></label></br>
-<label>Password: <input name="password" type="password" required></label></br>
-<input type="submit" value="Log in">
-<input type="hidden" name="next" value="{{ form.username }}/" />
+	{% csrf_token %} <label>Username: <input name="username"
+		required>
+	</label></br> <label>Password: <input name="password" type="password"
+		required>
+	</label></br> <input type="submit" value="Log in"> <input type="hidden"
+		name="next" value="{{ form.username }}/" />
 </form>
-{% endblock %}
-{% block footer %}
-WSD - Web Software Development
-Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya
-{% endblock %}
+{% endblock %} {% block footer %} WSD - Web Software Development
+Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya {% endblock %}
