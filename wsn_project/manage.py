@@ -1,4 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+import sys
+import os.path
+djangopath = os.path.join(os.path.dirname(__file__), '../../django-framework').replace('\\','/')
+absolute_djangopath = os.path.abspath(djangopath)
+sys.path.append(absolute_djangopath)
+
 from django.core.management import execute_manager
 import imp
 try:
