@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     
     url(r'^(?P<name>\w+)/$', 'views.albums'),
     # url(r'^wsd/', include('wsd.foo.urls'))
-    url(r'^register/$', include('registration.backends.default.urls')),
+    #url(r'^register/$', include('registration.backends.default.urls')),
     
     #create album and page
     url(r'^(?P<name>\w+)/create/$', 'views.create_album'),
