@@ -11,5 +11,7 @@ def home(request):
     
     c = {}
     c.update(csrf(request))
-    
-    return render_to_response('index.html', c)
+    if not request.user.is_authenticated():
+        return render_to_response('index.html', c)
+    else:
+        return HttpResponseRedirect("/" + request.user.username + "/")
