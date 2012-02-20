@@ -7,4 +7,5 @@ admin.autodiscover()
 urlpatterns = patterns('access.views',
     url(r'^login/$', 'login_view'),
     url(r'^logout/$', 'logout_view'),
+    url(r'^register/$', 'register' )
 )
