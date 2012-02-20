@@ -5,9 +5,6 @@ from django.shortcuts import render_to_response
 from django.contrib.auth import *
 from django.http import Http404
 
-def home(request):
-    return render_to_response('index.html', {})
-
 def auth(request):
     username = password = ''
     if request.POST:

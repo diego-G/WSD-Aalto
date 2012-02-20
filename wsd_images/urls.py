@@ -5,10 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^Access/', include('Access.urls')),
+                       
+    url(r'^$', )
+    url(r'^access/', include('access.urls')),
    
     #create album and page
-    url(r'^(?P<name>\w+)/create/$', 'views.create_album'),
+    url(r'^(?P<name>\w+)/create/', 'views.create_album'),
     #url(r'(?P<name>\w+)/(?P<album>\w+)/create, 'views.create_page'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
