@@ -26,7 +26,10 @@ def create(request, name):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST': # If the form has been submitted...
-        form = AlbumForm(request.POST, user=name) # A form bound to the POST data
+        usr = User.objects.get(username=name)
+        album = Album(user=usr)
+        form = AlbumForm(request.POST, instance=album) # A form bound to the POST data
+        form.save()
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
