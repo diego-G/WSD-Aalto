@@ -35,19 +35,14 @@ def logout_view(request):
     return HttpResponseRedirect("/")
 
 def register(request):
-    c = {}
-    c.update(csrf(request))
-    form = UserCreationForm()
-
     if request.method == 'POST':
-        data = request.POST.copy()
-        errors = form.get_validation_errors(data)
-        if not errors:
-            new_user = form.save(data)
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
             return HttpResponseRedirect("/" + username + "/")
     else:
-        data, errors = {}, {}
+        form = UserCreationForm()
 
-    return render_to_response("access/register.html", RequestContext(c,{
-        'form' : form })
+    return render_to_response("access/register.html", {
+        'form' : form} , context_instance=RequestContext(request) 
     )
