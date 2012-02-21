@@ -15,11 +15,11 @@ def home(request, name):
     else:
         try:
             usr = User.objects.get(username=name)
-            albums = Album.objects.get(user=usr)
+            albums = Album.objects.filter(user=usr)
         except Album.DoesNotExist:
             return HttpResponseRedirect("create_album/")
         
-        return render_to_response("album.html", Context({'user':name}))
+        return render_to_response("album.html", Context({'user':name, 'albums':albums}))
 
 
 def create(request, name):
@@ -33,11 +33,17 @@ def create(request, name):
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
-            return HttpResponseRedirect('/thanks/') # Redirect after POST
+            return HttpResponseRedirect('/') # Redirect after POST
     else:
         form = AlbumForm() # An unbound form
 
     return render_to_response('create_album.html', RequestContext(request,{
         'form': form,
     }))
-    return HttpResponse("Create album OK")
+
+#def delete(request, name, album):
+def delete(request, name):
+    usr = User.objects.get(username=request.user.username)
+#    Album.objects.get(user=usr, name=album).delete()
+    Album.objects.filter(user=usr).delete()
+    return HttpResponseRedirect("/")

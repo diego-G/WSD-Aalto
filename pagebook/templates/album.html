@@ -1,2 +1,19 @@
 {% extends "basic_template.html" %}
 {% block title %}Welcome, {{user}}{% endblock %}
+{% block body %}
+<table>
+<tr>
+{% for album in albums %}
+<td>
+<table>
+<tr><td>{{ album.name }}</td></tr>
+<tr><td>{{ album.private }}</td></tr>
+<tr><td><a href="delete_album/">Delete album</a></td></tr>
+</table>
+</td>
+{% endfor %}
+</tr>
+</table>
+<a href="create_album/">Create new album!</a>
+
+{% endblock %}
