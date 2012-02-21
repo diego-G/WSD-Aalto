@@ -5,6 +5,7 @@
 {% block body %}
   <h1>Create an account</h1>
   <form action="." method="post">
+  	{% csrf_token %}
     {% if form.error_dict %}
       <p class="error">Please correct the errors below.</p>
     {% endif %}

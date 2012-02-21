@@ -35,7 +35,8 @@ def logout_view(request):
     return HttpResponseRedirect("/")
 
 def register(request):
-    
+    c = {}
+    c.update(csrf(request))
     form = UserCreationForm()
 
     if request.method == 'POST':
@@ -47,6 +48,6 @@ def register(request):
     else:
         data, errors = {}, {}
 
-    return render_to_response("access/register.html", {
-        'form' : form }, context_instance=RequestContext(request)
+    return render_to_response("access/register.html", RequestContext(c,{
+        'form' : form })
     )

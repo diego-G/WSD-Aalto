@@ -9,19 +9,18 @@ from models import Album, Page, Image, AlbumForm
 from django.core.context_processors import csrf
 
 def home(request, name):
-
-    if not request.user.is_authenticated():
-        return render_to_response("space/album.html", {})
-    else:
+    try:
         usr = User.objects.get(username=name)
-        albums = Album.objects.filter(user=usr)
-        if not albums:
-            return HttpResponseRedirect("create_album/")
+    except usr.DoesNotExist:
+        raise Http404
+    albums = Album.objects.filter(user=usr)
+    if request.user.is_authenticated():
         
-        return render_to_response("space/album.html", Context({'user':name, 'albums':albums}))
+        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'albums':albums}))
+    else:
+        raise Http404
 
-
-def create(request, name):
+def create_album(request, name):
     c = {}
     c.update(csrf(request))
     if request.method == 'POST': # If the form has been submitted...
@@ -40,7 +39,7 @@ def create(request, name):
         'form': form,
     }))
 
-def delete(request, name, album):
+def delete_album(request, name, album):
 #def delete(request, name):
     #faltan los try
     usr = User.objects.get(username=request.user.username)

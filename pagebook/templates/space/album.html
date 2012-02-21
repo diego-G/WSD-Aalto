@@ -1,5 +1,5 @@
 {% extends "basic_template.html" %}
-{% block title %}Welcome, {{user}}{% endblock %}
+{% block title %}Albums of {{owner.username}}{% endblock %}
 {% block body %}
 <table>
 <tr>
@@ -8,12 +8,24 @@
 <table>
 <tr><td>{{ album.name }}</td></tr>
 <tr><td>{{ album.private }}</td></tr>
+{% if user.username == owner.username %}
 <tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
+{% else %}
+<tr><td></td></tr>
+{% endif %}
 </table>
 </td>
+{% empty %}
+No albums yet! Create a new one!
 {% endfor %}
 </tr>
 </table>
+{% if user.username == owner.username %}
 <a href="create_album/">Create new album!</a>
-
+{% endif %}
+{% endblock %}
+{% block footer %}
+<a href="/access/logout/">Logout</a></br>
+<a href="{% url space.views.home user %}">Home</a></br>
+WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}
