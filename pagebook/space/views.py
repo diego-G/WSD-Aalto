@@ -13,10 +13,9 @@ def home(request, name):
     if not request.user.is_authenticated():
         return render_to_response("album.html", {})
     else:
-        try:
-            usr = User.objects.get(username=name)
-            albums = Album.objects.filter(user=usr)
-        except Album.DoesNotExist:
+        usr = User.objects.get(username=name)
+        albums = Album.objects.filter(user=usr)
+        if not albums:
             return HttpResponseRedirect("create_album/")
         
         return render_to_response("album.html", Context({'user':name, 'albums':albums}))
@@ -41,9 +40,10 @@ def create(request, name):
         'form': form,
     }))
 
-#def delete(request, name, album):
-def delete(request, name):
+def delete(request, name, album):
+#def delete(request, name):
+    #faltan los try
     usr = User.objects.get(username=request.user.username)
 #    Album.objects.get(user=usr, name=album).delete()
-    Album.objects.filter(user=usr).delete()
+    Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")

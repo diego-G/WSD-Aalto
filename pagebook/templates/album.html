@@ -8,7 +8,7 @@
 <table>
 <tr><td>{{ album.name }}</td></tr>
 <tr><td>{{ album.private }}</td></tr>
-<tr><td><a href="delete_album/">Delete album</a></td></tr>
+<tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
 </table>
 </td>
 {% endfor %}
