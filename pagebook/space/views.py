@@ -11,14 +11,14 @@ from django.core.context_processors import csrf
 def home(request, name):
 
     if not request.user.is_authenticated():
-        return render_to_response("album.html", {})
+        return render_to_response("space/album.html", {})
     else:
         usr = User.objects.get(username=name)
         albums = Album.objects.filter(user=usr)
         if not albums:
             return HttpResponseRedirect("create_album/")
         
-        return render_to_response("album.html", Context({'user':name, 'albums':albums}))
+        return render_to_response("space/album.html", Context({'user':name, 'albums':albums}))
 
 
 def create(request, name):
@@ -36,7 +36,7 @@ def create(request, name):
     else:
         form = AlbumForm() # An unbound form
 
-    return render_to_response('create_album.html', RequestContext(request,{
+    return render_to_response('space/create_album.html', RequestContext(request,{
         'form': form,
     }))
 
