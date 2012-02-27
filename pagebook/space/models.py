@@ -38,3 +38,8 @@ class AlbumForm(ModelForm):
     class Meta:
         model = Album
         exclude = ('user')
+
+class PageForm(ModelForm):
+    class Meta:
+        model = Page
+        exclude = ('album')

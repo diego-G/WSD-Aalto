@@ -6,7 +6,7 @@
 {% for album in albums %}
 <td>
 <table>
-<tr><td>{{ album.name }}</td></tr>
+<tr><td><a href="{% url space.views.show_page user.username album.id %}">{{ album.name }}</a></td></tr>
 <tr><td>{{ album.private }}</td></tr>
 {% if user.username == owner.username %}
 <tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
@@ -26,6 +26,6 @@ No albums yet! Create a new one!
 {% endblock %}
 {% block footer %}
 <a href="/access/logout/">Logout</a></br>
-<a href="{% url space.views.home user %}">Home</a></br>
+<a href="{% url space.views.home user.username %}">Home</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}

@@ -46,3 +46,39 @@ def delete_album(request, name, album):
 #    Album.objects.get(user=usr, name=album).delete()
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
+
+def show_page(request, name, album):
+    try:
+        usr = User.objects.get(username=request.user.username)
+    except usr.DoesNotExist:
+        raise Http404
+    try:
+        albums = Album.objects.get(user=usr, id=album)
+    except albums.DoesNotExist:
+        raise Http404
+    pages = Page.objects.filter(album=albums)
+    if request.user.is_authenticated():
+        return render_to_response("space/page.html", Context({'user':request.user, 'owner':usr, 'pages':pages}))
+    else:
+        raise Http404
+
+def create_page(request, name, album):
+    if request.method == 'POST': # If the form has been submitted...
+        #falta un try
+        usr = User.objects.get(username=name)
+        page = Page(album=album)
+        form = PageForm(request.POST, instance=page) # A form bound to the POST data
+        form.save()
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            # ...
+            return HttpResponseRedirect('../') # Redirect after POST
+    else:
+        form = PageForm() # An unbound form
+
+    return render_to_response('space/create_page.html', RequestContext(request,{
+        'form': form,
+    }))
+    
+def delete_page(request, name, album):
+    return HttpResponse("delete page!")

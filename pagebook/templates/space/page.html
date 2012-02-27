@@ -1,0 +1,6 @@
+{% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
+{% block body %}
+{% for page in pages %}
+<p>Page {{page.id}}</p>
+{% endfor %}
+{% endblock %}
