@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Georgia, "Times New Roman",
+          Times, serif;
+}
+
+div.header {
+	color: white;
+	background-color: blue;
+
+	
+}
+
+.header a:link {
+	color:white;
+}
+.header a:visited {
+	color:white;
+}

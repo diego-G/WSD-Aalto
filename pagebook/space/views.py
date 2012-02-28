@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth import *
 from django.http import Http404
 from django.contrib.auth.models import User
-from models import Album, Page, Image, AlbumForm
+from models import Album, Page, Image, AlbumForm, PageForm
 from django.core.context_processors import csrf
 
 def home(request, name):
