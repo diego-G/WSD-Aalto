@@ -4,9 +4,22 @@
 {% for page in pages %}
 <p>Page {{page.id}}</p>
 {% endfor %}
+
+{% if user.username == owner.username %}
 <a href="create_page/">Add page</a>
+{% else %}
+<tr><td></td></tr>
+{% endif %}
+
 {% endblock %}
 {% block footer %}
+
+{% if user.username != owner.username %}
+<a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
+{% else %}
+<tr><td></td></tr>
+{% endif %}
+
 <a href="{% url space.views.home user.username %}">Home</a></br>
 <a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
