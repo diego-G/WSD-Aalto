@@ -66,7 +66,9 @@ def create_page(request, name, album):
     if request.method == 'POST': # If the form has been submitted...
         #falta un try
         usr = User.objects.get(username=name)
-        page = Page(album=album)
+        rel_album = Album.objects.get(user=usr,id=album)
+        print rel_album.name
+        page = Page(album=rel_album)
         form = PageForm(request.POST, instance=page) # A form bound to the POST data
         form.save()
         if form.is_valid(): # All validation rules pass

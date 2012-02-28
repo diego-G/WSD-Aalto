@@ -1,5 +1,5 @@
 {% block body %}
-<form action="/create_page/" method="post"> {% csrf_token %}
+<form action="." method="post"> {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Create page" />
 </form>
