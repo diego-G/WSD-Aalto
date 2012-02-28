@@ -65,15 +65,19 @@ def show_page(request, name, album):
 def create_page(request, name, album):
     if request.method == 'POST': # If the form has been submitted...
         #falta un try
-        usr = User.objects.get(username=name)
-        rel_album = Album.objects.get(user=usr,id=album)
-        print rel_album.name
-        page = Page(album=rel_album)
+        try:
+            usr = User.objects.get(username=name)
+            rel_album = Album.objects.get(user=usr,id=album)
+            num_pages = rel_album.len(pages)
+            page = Page(album=rel_album)
+        except rel_album.DoesNotExist:
+            raise Http404
         form = PageForm(request.POST, instance=page) # A form bound to the POST data
-        form.save()
+        
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             # ...
+            form.save()
             return HttpResponseRedirect('../') # Redirect after POST
     else:
         form = PageForm() # An unbound form

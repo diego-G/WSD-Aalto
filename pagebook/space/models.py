@@ -1,5 +1,7 @@
 from django.db import models
+from django import forms
 from django.forms import ModelForm
+from django.conf import Settings 
 
 # Create your models here.
 from django.contrib.auth.models import User
@@ -7,12 +9,10 @@ from django.contrib.auth.models import User
 import datetime
 
 class Image(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
-    url = models.URLField(blank=False)
+    file = models.ImageField(upload_to='/media/')
     
     def __unicode__(self):
-        return self.name
+        return self.file
 
 class Album(models.Model):
     name = models.CharField(max_length=255)
@@ -23,7 +23,7 @@ class Album(models.Model):
         return self.pub_date.date() == datetime.date.today()
     
     def __unicode__(self):
-        return self.name
+        return self.id
 
 class Page(models.Model):
     number = models.IntegerField()
@@ -42,4 +42,8 @@ class AlbumForm(ModelForm):
 class PageForm(ModelForm):
     class Meta:
         model = Page
-        exclude = ('album')
+        exclude = ('album','images','number')
+        
+class ImageForm(ModelForm):
+    class Meta:
+        model = Image
