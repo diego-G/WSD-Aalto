@@ -54,14 +54,17 @@ def create_album(request, name):
 def delete_album(request, name, album):
 #def delete(request, name):
     #faltan los try
+
     usr = User.objects.get(username=request.user.username)
 #    Album.objects.get(user=usr, name=album).delete()
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
 
 def show_page(request, name, album):
+    print name
+    print request.user.username
     try:
-        usr = User.objects.get(username=request.user.username)
+        usr = User.objects.get(username=name)
     except usr.DoesNotExist:
         raise Http404
     try:
