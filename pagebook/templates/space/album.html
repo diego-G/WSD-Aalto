@@ -25,7 +25,13 @@ No albums yet! Create a new one!
 {% endif %}
 {% endblock %}
 {% block footer %}
-<a href="/access/logout/">Logout</a></br>
+
+<form action="." method="post"> {% csrf_token %}
+Find another user's space: <input type="text" name="another_user" />
+<input type="submit" value="Submit" />
+</form> 
+
 <a href="{% url space.views.home user.username %}">Home</a></br>
+<a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}

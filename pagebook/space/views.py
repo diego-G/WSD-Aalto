@@ -9,14 +9,22 @@ from models import Album, Page, Image, AlbumForm, PageForm
 from django.core.context_processors import csrf
 
 def home(request, name):
+    c = {}
+    c.update(csrf(request))
     try:
         usr = User.objects.get(username=name)
     except usr.DoesNotExist:
         raise Http404
     albums = Album.objects.filter(user=usr)
-    if request.user.is_authenticated():
-        
-        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'albums':albums}))
+    
+    if request.method == 'POST':
+        username = request.POST.get('another_user')
+        return HttpResponseRedirect("/" + username + "/")
+    
+    if request.user.is_authenticated():        
+        return render_to_response("space/album.html", RequestContext(request,{
+            'user':request.user, 'owner':usr, 'albums':albums
+        }))
     else:
         raise Http404
 
@@ -68,8 +76,7 @@ def create_page(request, name, album):
         try:
             usr = User.objects.get(username=name)
             rel_album = Album.objects.get(user=usr,id=album)
-            num_pages = rel_album.len(pages)
-            page = Page(album=rel_album)
+            page = Page(album=rel_album,number=1)
         except rel_album.DoesNotExist:
             raise Http404
         form = PageForm(request.POST, instance=page) # A form bound to the POST data

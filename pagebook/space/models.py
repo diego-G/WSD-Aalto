@@ -19,6 +19,7 @@ class Album(models.Model):
     user = models.ForeignKey(User)
     private = models.BooleanField()
     
+    
     def was_published_today(self):
         return self.pub_date.date() == datetime.date.today()
     
@@ -30,7 +31,7 @@ class Page(models.Model):
     layout = models.IntegerField()
     images = models.ManyToManyField(Image)
     album = models.ForeignKey(Album)
-    
+
     def __unicode__(self):
         return self.number
 
