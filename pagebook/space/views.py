@@ -18,8 +18,12 @@ def home(request, name):
     albums = Album.objects.filter(user=usr)
     
     if request.method == 'POST':
-        username = request.POST.get('another_user')
-        return HttpResponseRedirect("/" + username + "/")
+        another_user = request.POST.get('another_user')
+        try:
+             exist = User.objects.get(username=another_user)
+        except exist.DoesNotExist:
+            raise Http404
+        return HttpResponseRedirect("/" + another_user + "/")
     
     if request.user.is_authenticated():        
         return render_to_response("space/album.html", RequestContext(request,{

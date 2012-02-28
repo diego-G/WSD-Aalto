@@ -6,7 +6,7 @@
 {% for album in albums %}
 <td>
 <table>
-<tr><td><a href="{% url space.views.show_page user.username album.id %}">{{ album.name }}</a></td></tr>
+<tr><td><a href="{% url space.views.show_page owner.username album.id %}">{{ album.name }}</a></td></tr>
 <tr><td>{{ album.private }}</td></tr>
 {% if user.username == owner.username %}
 <tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
