@@ -21,7 +21,8 @@ No albums yet! Create a new one!
 </tr>
 </table>
 {% if user.username == owner.username %}
-<a href="create_album/">Create new album!</a>
+<a href="create_album/">Create new album!</a></br>
+<a href="images/">IMAGES</a>
 {% endif %}
 {% endblock %}
 {% block footer %}
@@ -30,8 +31,9 @@ No albums yet! Create a new one!
 Find another user's space: <input type="text" name="another_user" />
 <input type="submit" value="Submit" />
 </form> 
-
+{% if user.username != owner.username %}
 <a href="{% url space.views.home user.username %}">Home</a></br>
+{% endif %}
 <a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}

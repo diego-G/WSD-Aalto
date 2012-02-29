@@ -54,7 +54,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "media")
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 
-MEDIA_URL = '/media/' 
+MEDIA_URL = '/media/images/' 
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'access',
     'space',
+    'space.images',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,3 +151,10 @@ LOGGING = {
         },
     }
 }
+
+FILE_UPLOAD_HANDLERS = (
+        "django.core.files.uploadhandler.MemoryFileUploadHandler",
+        "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+ )
+
+

@@ -10,5 +10,7 @@ urlpatterns = patterns('space.views',
     url(r'^(?P<album>\d+)/delete_page/(?P<page>\d+)/', 'delete_page', name='delete_page'),
     #url(r'^(?P<name>\w+)/$', include('space.urls'), name='space'),
     url(r'^(?P<album>\d+)/(?P<page>\d+)/', 'pages', name='pages'),
+    
+    url(r'^images/', include('space.images.urls'), name='images'),
 
 )
