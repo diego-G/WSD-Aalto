@@ -1,0 +1,37 @@
+{% extends "view_template.html" %}
+{% block title %}Albums of {{owner.username}}{% endblock %}
+{% block body %}
+<table>
+<tr>
+{% for album in albums %}
+<td>
+<table>
+<tr><td><a href="{% url space.views.show_album owner.username album.id %}">{{ album.name }}</a></td></tr>
+<tr><td>{{ album.private }}</td></tr>
+{% if user.username == owner.username %}
+<tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
+{% else %}
+<tr><td></td></tr>
+{% endif %}
+</table>
+</td>
+{% empty %}
+No albums yet! Create a new one!
+{% endfor %}
+</tr>
+</table>
+{% if user.username == owner.username %}
+<a href="create_album/">Create new album!</a>
+{% endif %}
+{% endblock %}
+{% block footer %}
+
+<form action="." method="post"> {% csrf_token %}
+Find another user's space: <input type="text" name="another_user" />
+<input type="submit" value="Submit" />
+</form> 
+
+<a href="{% url space.views.home user.username %}">Home</a></br>
+<a href="/access/logout/">Logout</a></br>
+WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
+{% endblock %}

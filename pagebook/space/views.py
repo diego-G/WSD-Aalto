@@ -26,7 +26,7 @@ def home(request, name):
         return HttpResponseRedirect("/" + another_user + "/")
     
     if request.user.is_authenticated():        
-        return render_to_response("space/album.html", RequestContext(request,{
+        return render_to_response("space/collections.html", RequestContext(request,{
             'user':request.user, 'owner':usr, 'albums':albums
         }))
     else:
@@ -60,7 +60,7 @@ def delete_album(request, name, album):
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
 
-def show_page(request, name, album):
+def show_album(request, name, album):
     print name
     print request.user.username
     try:
@@ -71,9 +71,9 @@ def show_page(request, name, album):
         albums = Album.objects.get(user=usr, id=album)
     except albums.DoesNotExist:
         raise Http404
-    pages = Page.objects.filter(album=albums)
+    album = Page.objects.filter(album=albums)
     if request.user.is_authenticated():
-        return render_to_response("space/page.html", Context({'user':request.user, 'owner':usr, 'pages':pages}))
+        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'album':album}))
     else:
         raise Http404
 
@@ -102,3 +102,29 @@ def create_page(request, name, album):
     
 def delete_page(request, name, album):
     return HttpResponse("delete page!")
+
+def pages(request, name, album, page):
+    try:
+        usr = User.objects.get(username=name)
+    except usr.DoesNotExist:
+        raise Http404
+    try:
+        albums = Album.objects.get(user=usr, id=album)
+    except albums.DoesNotExist:
+        raise Http404
+    try:
+        albums = Album.objects.get(user=usr, id=album)
+    except albums.DoesNotExist:
+        raise Http404
+    pages = Page.objects.filter(album=albums)
+    try:
+        page = pages.objects.get(id=page)
+    except page.DoesNotExist:
+        raise Http404
+            
+    if request.user.is_authenticated():
+        return render_to_response("space/pages.html", Context({
+            'user':request.user, 'owner':usr, 'pages':pages, 'page':page
+        }))
+    else:
+        raise Http404
