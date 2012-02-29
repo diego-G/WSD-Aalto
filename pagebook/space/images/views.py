@@ -23,7 +23,7 @@ def images(request, name):
     
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)
-        save_file(request.FILES['image'])
+        save_file(request.FILES['image'],usr)
         return HttpResponseRedirect(".")
 
     else:
@@ -38,9 +38,9 @@ def images(request, name):
         else:
             raise Http404
 
-def save_file(file, path=''):
+def save_file(file, user, path=''):
     filename = file._get_name()
-    fd = open('%s/%s' % (MEDIA_ROOT+"/images/", str(path) + str(filename)), 'wb')
+    fd = open('%s/%s' % (MEDIA_ROOT+"/images/"+user.username, str(path) + str(filename)), 'wb')
     for chunk in file.chunks():
         fd.write(chunk)
     fd.close()

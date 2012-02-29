@@ -10,13 +10,15 @@
 <tr><td>{{ album.private }}</td></tr>
 {% if user.username == owner.username %}
 <tr><td><a href="delete_album/{{ album.id }}">Delete album</a></td></tr>
-{% else %}
-<tr><td></td></tr>
 {% endif %}
 </table>
 </td>
 {% empty %}
+{% if user.username == owner.username %}
 No albums yet! Create a new one!
+{% else %}
+The user has not any album that you are able to see.
+{% endif %}
 {% endfor %}
 </tr>
 </table>

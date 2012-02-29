@@ -16,7 +16,11 @@
 </table>
 </td>
 {% empty %}
+{% if user.username == owner.username %}
 No pages yet! Create a new one!
+{% else %}
+No pages in this album.
+{% endif %}
 {% endfor %}
 </tr>
 </table>

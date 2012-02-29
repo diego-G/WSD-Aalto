@@ -11,6 +11,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from django.core.context_processors import csrf
 
+import os
+from settings import MEDIA_ROOT
 
 def login_view(request):
     
@@ -37,8 +39,12 @@ def logout_view(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid():          
             new_user = form.save()
+            
+            #It creates a private folder for each user 
+            os.mkdir(os.path.join(MEDIA_ROOT+"/images/", new_user.username))
+            
             return HttpResponseRedirect("/")
     else:
         form = UserCreationForm()

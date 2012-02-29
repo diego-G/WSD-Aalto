@@ -25,7 +25,9 @@ def home(request, name):
             raise Http404
         return HttpResponseRedirect("/" + another_user + "/")
     
-    if request.user.is_authenticated():        
+    if request.user.is_authenticated():
+        if request.user != usr:
+             albums = Album.objects.filter(user=usr, private=False)       
         return render_to_response("space/collections.html", RequestContext(request,{
             'user':request.user, 'owner':usr, 'albums':albums
         }))
