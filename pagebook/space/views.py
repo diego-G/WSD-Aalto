@@ -68,12 +68,12 @@ def show_album(request, name, album):
     except usr.DoesNotExist:
         raise Http404
     try:
-        albums = Album.objects.get(user=usr, id=album)
-    except albums.DoesNotExist:
+        album_ = Album.objects.get(user=usr, id=album)
+    except album_.DoesNotExist:
         raise Http404
-    album = Page.objects.filter(album=albums)
+    pages = Page.objects.filter(album=album_)
     if request.user.is_authenticated():
-        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'album':album}))
+        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'album':pages}))
     else:
         raise Http404
 
@@ -99,32 +99,28 @@ def create_page(request, name, album):
     return render_to_response('space/create_page.html', RequestContext(request,{
         'form': form,
     }))
-    
-def delete_page(request, name, album):
-    return HttpResponse("delete page!")
 
+    
+def delete_page(request, name, album, page):
+    usr = User.objects.get(username=request.user.username)
+#    Album.objects.get(user=usr, name=album).delete()
+    album_ = Album.objects.filter(user=usr, id=album)
+    Page.objects.get(album=album_, id=page).delete()
+    return HttpResponseRedirect("../../")
+    
 def pages(request, name, album, page):
     try:
         usr = User.objects.get(username=name)
     except usr.DoesNotExist:
         raise Http404
     try:
-        albums = Album.objects.get(user=usr, id=album)
-    except albums.DoesNotExist:
+        album_ = Album.objects.get(user=usr, id=album)
+    except album_.DoesNotExist:
         raise Http404
-    try:
-        albums = Album.objects.get(user=usr, id=album)
-    except albums.DoesNotExist:
-        raise Http404
-    pages = Page.objects.filter(album=albums)
-    try:
-        page = pages.objects.get(id=page)
-    except page.DoesNotExist:
-        raise Http404
-            
+    page_ = Page.objects.get(album=album_,id=page)   
     if request.user.is_authenticated():
         return render_to_response("space/pages.html", Context({
-            'user':request.user, 'owner':usr, 'pages':pages, 'page':page
+            'user':request.user, 'owner':usr, 'page':page_
         }))
     else:
         raise Http404

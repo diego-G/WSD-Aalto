@@ -2,9 +2,12 @@
 {% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
 {% block body %}
 
+ID: {{ page.id }}
+Page number: {{ page.number }}
+Layout: {{ page.layout }}
 
 {% if user.username == owner.username %}
-<a href="create_page/">Add page</a>
+<a href="../create_page/">Add page</a>
 {% else %}
 <tr><td></td></tr>
 {% endif %}

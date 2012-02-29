@@ -1,14 +1,29 @@
 {% extends "view_template.html" %}
-{% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
+{% block title %} {% if page in album %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
 {% block body %}
+<table>
+<tr>
 {% for page in album %}
-<a href="{% url space.views.pages owner.username page.album page.id %}">Page {{page.id}}</>
-{% endfor %}
-
+<td>
+<table>
+<tr><td>
+<a href="{{ page.id }}/">Page {{page.id}}</></td></tr>
 {% if user.username == owner.username %}
-<a href="create_page/">Add page</a>
+<tr><td><a href="delete_page/{{ page.id }}/">Delete page</a></td></tr>
 {% else %}
 <tr><td></td></tr>
+{% endif %}
+</table>
+</td>
+{% empty %}
+No pages yet! Create a new one!
+{% endfor %}
+</tr>
+</table>
+</ br>
+{% if user.username == owner.username %}
+<a href="create_page/">Add page</a>
+
 {% endif %}
 
 {% endblock %}
