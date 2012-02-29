@@ -2,12 +2,19 @@
 {% block title %} {{ user.username }}'s pictures {% endblock %}
  
 {% block body  %}
-     <h1>Upload a file</h1>
-     <form action="." method="post" enctype="multipart/form-data">
-     		{% csrf_token %}
-             {{ form }}
-             <input type="submit" value="Upload" />
-     </form>
+<h1>Upload more images:</h1>
+{% if form.errors %}
+    <p style="color: red;">
+       	Please correct the error{{ form.errors|pluralize }} below.
+   	</p>
+{% endif %}
+<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Upload image">
+</form>
+
 {% endblock %}
 
 {% block footer %}
