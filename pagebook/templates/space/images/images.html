@@ -2,6 +2,19 @@
 {% block title %} {{ user.username }}'s pictures {% endblock %}
  
 {% block body  %}
+<table>
+<tr>
+{% for file in listing %}
+<td>
+<table>
+<tr><td> <img src="{{ MEDIA_URL }}images/{{user.username}}/{{file}}" width="150" height="110" /></td></tr>
+<tr><td><a href="delete_image/{{file}}">Delete Image</a></td></tr>
+</table>
+</td>
+{% endfor %}
+</tr>
+</table>
+
 <h1>Upload more images:</h1>
 <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
     <table>

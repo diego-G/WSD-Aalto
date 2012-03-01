@@ -10,6 +10,8 @@ from django.http import (HttpResponse, HttpResponseRedirect,
 from form import ImageUploadForm
 
 from settings import MEDIA_ROOT
+import os
+
 
 def images(request, name):
     template = "space/images/images.html"
@@ -29,9 +31,12 @@ def images(request, name):
     else:
         if request.user.is_authenticated():
             if request.user==usr:  
-                form = ImageUploadForm()          
+                form = ImageUploadForm()
+                
+                path = MEDIA_ROOT+"/images/"+usr.username
+                listing = os.listdir(path)
                 return render_to_response(template, RequestContext(request,{
-                    'user':request.user, 'owner':usr, 'form': form,  'images': MEDIA_ROOT+"/images/"
+                    'user':request.user, 'owner':usr, 'form': form, 'listing': listing
                 }))
             else:
                 raise Http404
@@ -44,3 +49,7 @@ def save_file(file, user, path=''):
     for chunk in file.chunks():
         fd.write(chunk)
     fd.close()
+    
+def delete_image(request, name, file):
+    os.remove(MEDIA_ROOT+"/images/"+name+"/"+file)
+    return HttpResponseRedirect("../")
