@@ -51,5 +51,6 @@ def save_file(file, user, path=''):
     fd.close()
     
 def delete_image(request, name, file):
+    print file
     os.remove(MEDIA_ROOT+"/images/"+name+"/"+file)
     return HttpResponseRedirect("../")

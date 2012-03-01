@@ -1,3 +1,4 @@
+{% extends "view_template.html" %}
 {% block body %}
 <form action="." method="post"> {% csrf_token %}
 {{ form.as_p }}

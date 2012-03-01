@@ -81,16 +81,21 @@ def show_album(request, name, album):
 
 def create_page(request, name, album):
     if request.method == 'POST': # If the form has been submitted...
-        #falta un try
+        
+        print "entra!"
+        print request.POST
         try:
             usr = User.objects.get(username=name)
             rel_album = Album.objects.get(user=usr,id=album)
             rel_page = Page.objects.filter(album=rel_album.id)
             length = len(rel_page)
             print length
-            page = Page(album=rel_album,number=length)
+            layout_ = request.POST.get("layout")
+            print layout_
+            page = Page(album=rel_album,number=length+1,layout=layout_)
         except rel_album.DoesNotExist:
             raise Http404
+        
         form = PageForm(request.POST, instance=page) # A form bound to the POST data
         
         if form.is_valid(): # All validation rules pass
@@ -110,7 +115,13 @@ def delete_page(request, name, album, page):
     usr = User.objects.get(username=request.user.username)
 #    Album.objects.get(user=usr, name=album).delete()
     album_ = Album.objects.filter(user=usr, id=album)
-    Page.objects.get(album=album_, id=page).delete()
+    page = Page.objects.get(album=album_, id=page)
+    num_pag = page.number
+    page.delete()
+    pag_mod = Page.objects.filter(album=album_, number__gt=num_pag)
+    for pag in pag_mod:
+        pag.number -= 1
+        pag.save()
     return HttpResponseRedirect("../../")
     
 def pages(request, name, album, page):
