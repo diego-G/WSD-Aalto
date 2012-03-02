@@ -38,6 +38,7 @@ html,body {
 	color:#FC6;
 }
 .content {
+	margin:0 auto -50px;
 	top:120px;
 	float:none;
 	position:relative;
@@ -47,6 +48,9 @@ html,body {
 	padding: 20px 45px 10px 15px;
 }
 .footer {
+	text-align:center
+	position:relative;
+	top:10px;
 	padding: 20px 45px 10px 15px;
 	font-size:12px;
 	text-align:center;
