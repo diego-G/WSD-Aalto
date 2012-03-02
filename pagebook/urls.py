@@ -9,7 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', 'pagebook.views.home', name='home'),
-    url(r'^openid/$', include('django_openid_consumer.urls'), name='openid'),
+    url(r'^social_auth/', include('social_auth.urls')),
     url(r'^access/', include('access.urls'), name='access'),
 
     # Uncomment the next line to enable the admin:

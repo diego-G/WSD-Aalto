@@ -32,7 +32,11 @@ def images(request, name):
     else:
         if request.user==usr:  
             form = ImageUploadForm()
-            
+
+            try:
+                os.mkdir(os.path.join(MEDIA_ROOT+"/images/", usr.username))
+            except OSError:
+                pass
             path = MEDIA_ROOT+"/images/"+usr.username
             listing = os.listdir(path)
             return render_to_response(template, RequestContext(request,{
