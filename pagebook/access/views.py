@@ -5,6 +5,7 @@ from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.contrib.auth import *
 from django.http import Http404
+from django.conf import settings
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -12,6 +13,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.context_processors import csrf
 import os
 from settings import MEDIA_ROOT
+
+FACEBOOK_APP_ID = getattr(settings, 'FACEBOOK_APP_ID', '')
+FACEBOOK_API_KEY = getattr(settings, 'FACEBOOK_API_KEY', '')
+FACEBOOK_SECRET_KEY = getattr(settings, 'FACEBOOK_SECRET_KEY', '')
 
 def login_view(request):
     

@@ -102,6 +102,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_openid_consumer.middleware.OpenIDMiddleware'
 )
 
 ROOT_URLCONF = 'pagebook.urls'
@@ -126,7 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'access',
     'space',
-    'space.images',
+    'django_openid_consumer',
 )
 
 # A sample logging configuration. The only tangible logging
