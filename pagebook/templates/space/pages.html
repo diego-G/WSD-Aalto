@@ -1,29 +1,25 @@
 {% extends "view_template.html" %}
 {% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
-{% block body %}
 
+{% block body %}
 ID: {{ page.id }}
 Page number: {{ page.number }}
 Layout: {{ page.layout }}
 
 {% if user.username == owner.username %}
-<a href="../create_page/">Add page</a>
+<a href="../create_page/">Add page</a></br>
 {% else %}
 <tr><td></td></tr>
 {% endif %}
-
+<a href="../">Back to album</a></br>
 {% endblock %}
 
 {% block footer %}
-<a href="../">Back to album</a></br>
-
 {% if user.username != owner.username %}
 <a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
 {% else %}
 <tr><td></td></tr>
 {% endif %}
-
-<a href="{% url space.views.home user.username %}">Home</a></br>
 <a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}

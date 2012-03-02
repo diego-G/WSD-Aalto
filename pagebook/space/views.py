@@ -8,6 +8,10 @@ from django.contrib.auth.models import User
 from models import Album, Page, Image, AlbumForm, PageForm
 from django.core.context_processors import csrf
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+
+@login_required
 def home(request, name):
     c = {}
     c.update(csrf(request))
@@ -25,14 +29,11 @@ def home(request, name):
             raise Http404
         return HttpResponseRedirect("/" + another_user + "/")
     
-    if request.user.is_authenticated():
-        if request.user != usr:
-             albums = Album.objects.filter(user=usr, private=False)       
-        return render_to_response("space/collections.html", RequestContext(request,{
-            'user':request.user, 'owner':usr, 'albums':albums
-        }))
-    else:
-        raise Http404
+    if request.user != usr:
+         albums = Album.objects.filter(user=usr, private=False)       
+    return render_to_response("space/collections.html", RequestContext(request,{
+        'user':request.user, 'owner':usr, 'albums':albums
+    }))
 
 def create_album(request, name):
     c = {}
@@ -62,8 +63,8 @@ def delete_album(request, name, album):
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
 
+@login_required
 def show_album(request, name, album):
-    print name
     print request.user.username
     try:
         usr = User.objects.get(username=name)
@@ -74,22 +75,18 @@ def show_album(request, name, album):
     except album_.DoesNotExist:
         raise Http404
     pages = Page.objects.filter(album=album_)
-    if request.user.is_authenticated():
-        return render_to_response("space/album.html", Context({'user':request.user, 'owner':usr, 'album':pages}))
-    else:
-        raise Http404
+    return render_to_response("space/album.html", 
+            Context({'user':request.user, 'owner':usr, 'album':pages})
+    )
 
 def create_page(request, name, album):
     if request.method == 'POST': # If the form has been submitted...
-        
-        print "entra!"
         print request.POST
         try:
             usr = User.objects.get(username=name)
             rel_album = Album.objects.get(user=usr,id=album)
             rel_page = Page.objects.filter(album=rel_album.id)
             length = len(rel_page)
-            print length
             layout_ = request.POST.get("layout")
             print layout_
             page = Page(album=rel_album,number=length+1,layout=layout_)
@@ -123,7 +120,8 @@ def delete_page(request, name, album, page):
         pag.number -= 1
         pag.save()
     return HttpResponseRedirect("../../")
-    
+
+@login_required    
 def pages(request, name, album, page):
     try:
         usr = User.objects.get(username=name)
@@ -134,9 +132,23 @@ def pages(request, name, album, page):
     except album_.DoesNotExist:
         raise Http404
     page_ = Page.objects.get(album=album_,id=page)   
-    if request.user.is_authenticated():
-        return render_to_response("space/pages.html", Context({
-            'user':request.user, 'owner':usr, 'page':page_
-        }))
-    else:
-        raise Http404
+
+    return render_to_response("space/pages.html", Context({
+        'user':request.user, 'owner':usr, 'page':page_
+    }))
+      
+@login_required    
+def change_pass(request, name):
+    form = PasswordChangeForm(request.user) 
+    if request.POST:
+            form = PasswordChangeForm(request.user,request.POST) 
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('done/')
+    return render_to_response('space/change_pass_form.html', {
+            'form': form } , context_instance=RequestContext(request)
+        ) 
+  
+def change_pass_done(request, name):
+    return render_to_response('space/change_pass_done.html',
+             context_instance=RequestContext(request)) 

@@ -1,6 +1,5 @@
 {% extends "view_template.html" %}
 {% block title %} {{ user.username }}'s pictures {% endblock %}
- 
 {% block body  %}
 <table>
 <tr>
@@ -26,8 +25,6 @@
 {% endblock %}
 
 {% block footer %}
-
-<a href="{% url space.views.home user.username %}">Home</a></br>
 <a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}

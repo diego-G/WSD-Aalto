@@ -10,7 +10,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
 from django.core.context_processors import csrf
-
 import os
 from settings import MEDIA_ROOT
 
@@ -46,8 +45,8 @@ def register(request):
             os.mkdir(os.path.join(MEDIA_ROOT+"/images/", new_user.username))
             
             return HttpResponseRedirect("/")
-    else:
-        form = UserCreationForm()
+        else:
+            form = UserCreationForm()
 
     return render_to_response("access/register.html", {
         'form' : form} , context_instance=RequestContext(request) 

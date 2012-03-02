@@ -9,10 +9,11 @@ from django.http import (HttpResponse, HttpResponseRedirect,
                           HttpResponseBadRequest)
 from form import ImageUploadForm
 
+from django.contrib.auth.decorators import login_required
 from settings import MEDIA_ROOT
 import os
 
-
+@login_required
 def images(request, name):
     template = "space/images/images.html"
     
@@ -29,17 +30,14 @@ def images(request, name):
         return HttpResponseRedirect(".")
 
     else:
-        if request.user.is_authenticated():
-            if request.user==usr:  
-                form = ImageUploadForm()
-                
-                path = MEDIA_ROOT+"/images/"+usr.username
-                listing = os.listdir(path)
-                return render_to_response(template, RequestContext(request,{
-                    'user':request.user, 'owner':usr, 'form': form, 'listing': listing
-                }))
-            else:
-                raise Http404
+        if request.user==usr:  
+            form = ImageUploadForm()
+            
+            path = MEDIA_ROOT+"/images/"+usr.username
+            listing = os.listdir(path)
+            return render_to_response(template, RequestContext(request,{
+                'user':request.user, 'owner':usr, 'form': form, 'listing': listing
+            }))
         else:
             raise Http404
 

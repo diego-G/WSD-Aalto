@@ -12,5 +12,7 @@ urlpatterns = patterns('space.views',
     url(r'^(?P<album>\d+)/(?P<page>\d+)/', 'pages', name='pages'),
     
     url(r'^images/', include('space.images.urls'), name='images'),
-
+        
+    url(r'^change_pass/$', 'change_pass', name='change_pass'),
+    url(r'^change_pass/done/$', 'change_pass_done')
 )

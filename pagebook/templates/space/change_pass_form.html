@@ -1,0 +1,15 @@
+{% extends "view_template.html" %}
+{% block title %} Update Alert {% endblock %}
+{% block body %}
+<h1>Change your password</h1>
+<form action="." method="post">
+{% csrf_token %}
+  <ul>
+    {{ form.as_ul }}
+    <li>
+      <input type=submit value="Change Password"/>
+    </li>
+  </ul>
+</form>
+{% endblock %} 
+{% block footer %} WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya {% endblock %}
