@@ -2,12 +2,16 @@
 
 {% block title %}Create an account{% endblock %}
 
-{% block body %}
+{% block signupForm %}
   <h1>Create an account</h1>
    <form action="" method="post">
-   {% csrf_token %}
-      {{ form.as_table }}
-      <input type="submit" value="Create the account">
+   {% csrf_token %}  
+	  <ul>
+	    {{ form.as_ul }}
+	    <li>
+	      <input type="submit" value="Create the account">
+	    </li>
+	  </ul>
   </form>
 {% endblock %}
 {% block footer %} WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya {% endblock %}

@@ -36,6 +36,7 @@ def logout_view(request):
     return HttpResponseRedirect("/")
 
 def register(request):
+    form = UserCreationForm()
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():          
