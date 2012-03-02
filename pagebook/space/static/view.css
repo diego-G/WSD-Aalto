@@ -1,8 +1,10 @@
 @CHARSET "UTF-8";
 
-body {
-	font-family: Georgia, "Times New Roman",
-          Times, serif;
+html,body {
+	margin:0;
+	height:100%;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+	
 }
 
 div.header {
