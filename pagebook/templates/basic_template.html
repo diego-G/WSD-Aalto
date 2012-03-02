@@ -6,9 +6,10 @@
 <link rel="stylesheet" type="text/css" href="/static/main.css">
 </head>
 <body>
+<div class="wrapper">
 <div class="up">
 <div id="logo">
-<a href="{% url views.home  %}"><img src="/static/logo.png"></a> 
+<a href="/"><img src="/static/logo.png"></a> 
 	</div>
     <div id="login">
     {% block body %}{% endblock %}
@@ -17,13 +18,17 @@
 <div class="content">
 <div class="intro">
 	<p>Cupcake ipsum dolor sit amet. Ice cream dragée topping carrot cake icing chocolate cake. Chocolate bar marshmallow danish cotton candy.</p>
+
+    <img src="/static/connecting.png">
+    
+    </div>
+    </div><div class="push"></div>
+
     <img src="/static/connecting.png">   
 </div>
 <div class="signupForm">
 		{% block signupForm %}{% endblock %}
 </div>
-<div class='footer'>{% block footer %}{% endblock %}</div>
-</div>
-	
+	<div class='footer'>{% block footer %}{% endblock %}</div>
 </body>
 </html>
