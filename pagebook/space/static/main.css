@@ -1,10 +1,20 @@
 @charset "UTF-8";
 /* CSS Document */
+html,body {
+	margin:0;
+	height:100%;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
 .up {
+	position:absolute;
+	top:0;
+	right:1;
+	left:0;
 	background-color:#272AB4;
 	width:100%;
 	height: 120px;
-	padding: 20px 15px 10px 15px;
+	
 	margin: 0px 0px 0px 0px;
 	
 
@@ -12,7 +22,34 @@
 
 #login {
 	float:right;
+	color:white;
+	padding: 20px 45px 10px 15px;
 }
 #logo {
 	float:left;
+	padding-left:25px;
+	
 }
+#loginTable td {
+	padding-top:10px;
+}
+#loginTable a {
+	text-decoration:none;
+	color:#FC6;
+}
+.content {
+	top:120px;
+	float:none;
+	position:relative;
+}
+.intro {
+	width:600px;
+	padding: 20px 45px 10px 15px;
+}
+.footer {
+	padding: 20px 45px 10px 15px;
+	font-size:12px;
+	text-align:center;
+	color:#777;
+}
+
