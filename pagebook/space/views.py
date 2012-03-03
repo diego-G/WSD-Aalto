@@ -17,7 +17,7 @@ def home(request, name):
     c.update(csrf(request))
     try:
         usr = User.objects.get(username=name)
-    except usr.DoesNotExist:
+    except User.DoesNotExist:
         raise Http404
     albums = Album.objects.filter(user=usr)
     
@@ -25,7 +25,7 @@ def home(request, name):
         another_user = request.POST.get('another_user')
         try:
              exist = User.objects.get(username=another_user)
-        except exist.DoesNotExist:
+        except User.DoesNotExist:
             raise Http404
         return HttpResponseRedirect("/" + another_user + "/")
     
@@ -68,11 +68,11 @@ def show_album(request, name, album):
     print request.user.username
     try:
         usr = User.objects.get(username=name)
-    except usr.DoesNotExist:
+    except User.DoesNotExist:
         raise Http404
     try:
         album_ = Album.objects.get(user=usr, id=album)
-    except album_.DoesNotExist:
+    except Album.DoesNotExist:
         raise Http404
     pages = Page.objects.filter(album=album_)
     return render_to_response("space/album.html", 
@@ -81,16 +81,14 @@ def show_album(request, name, album):
 
 def create_page(request, name, album):
     if request.method == 'POST': # If the form has been submitted...
-        print request.POST
         try:
             usr = User.objects.get(username=name)
             rel_album = Album.objects.get(user=usr,id=album)
             rel_page = Page.objects.filter(album=rel_album.id)
             length = len(rel_page)
             layout_ = request.POST.get("layout")
-            print layout_
             page = Page(album=rel_album,number=length+1,layout=layout_)
-        except rel_album.DoesNotExist:
+        except Album.DoesNotExist:
             raise Http404
         
         form = PageForm(request.POST, instance=page) # A form bound to the POST data
@@ -109,6 +107,7 @@ def create_page(request, name, album):
 
     
 def delete_page(request, name, album, page):
+    # faltan try
     usr = User.objects.get(username=request.user.username)
 #    Album.objects.get(user=usr, name=album).delete()
     album_ = Album.objects.filter(user=usr, id=album)
@@ -125,11 +124,11 @@ def delete_page(request, name, album, page):
 def pages(request, name, album, page):
     try:
         usr = User.objects.get(username=name)
-    except usr.DoesNotExist:
+    except User.DoesNotExist:
         raise Http404
     try:
         album_ = Album.objects.get(user=usr, id=album)
-    except album_.DoesNotExist:
+    except Album.DoesNotExist:
         raise Http404
     page_ = Page.objects.get(album=album_,id=page)   
 

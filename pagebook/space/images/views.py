@@ -21,7 +21,7 @@ def images(request, name):
     c.update(csrf(request))
     try:
         usr = User.objects.get(username=name)
-    except usr.DoesNotExist:
+    except User.DoesNotExist:
         raise Http404
     
     if request.method == 'POST':
