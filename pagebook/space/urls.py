@@ -1,6 +1,11 @@
 from django.conf.urls.defaults import patterns, include, url
+from django.views.static import *
 
-urlpatterns = patterns('space.views',
+urlpatterns = patterns('',
+    url(r'^(?P<album>\d+)/(?P<page>\d+)/edit_page/$', include('space.editor.urls'), name= 'editor'),                  
+)
+
+urlpatterns += patterns('space.views',
 
     url(r"^js/js_page.js", 'render_javascript', name='render_javascript'),
     url(r'^$', 'home', name='home_user'),
@@ -16,6 +21,6 @@ urlpatterns = patterns('space.views',
     url(r'^images/', include('space.images.urls'), name='images'),
         
     url(r'^change_pass/$', 'change_pass', name='change_pass'),
-    url(r'^change_pass/done/$', 'change_pass_done'),
-    
+    url(r'^change_pass/done/$', 'change_pass_done'),  
 )
+

@@ -9,6 +9,7 @@
 <tr><td>
 <a href="{{ page.id }}/">Page {{page.id}}</></td></tr>
 {% if user.username == owner.username %}
+<tr><td><a href="{{ page.id }}/edit_page/">Edit page</a></td></tr>
 <tr><td><a href="delete_page/{{ page.id }}/">Delete page</a></td></tr>
 {% else %}
 <tr><td></td></tr>
