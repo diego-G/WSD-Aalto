@@ -25,7 +25,7 @@ def images(request, name):
         raise Http404
     
     if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
+        form = ImageUploadForm(request.POST, request.FILES)  
         save_file(request.FILES['image'],usr)
         return HttpResponseRedirect(".")
 

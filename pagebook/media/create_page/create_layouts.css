@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+#Style1 {
+position:absolute;
+visibility:hidden;
+border:solid 1px #CCC;
+padding:5px;
+
+}
+
+#Style2 {
+position:absolute;
+visibility:hidden;
+border:solid 1px #CCC;
+padding:5px;
+
+}
+
+#Style3 {
+position:absolute;
+visibility:hidden;
+border:solid 1px #CCC;
+padding:5px;
+
+} 
