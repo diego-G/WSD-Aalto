@@ -1,0 +1,11 @@
+
+ID: {{ page.id }}
+Page number: {{ page.number }}
+Layout: {{ page.layout }}
+
+{% if user.username == owner.username %}
+<a href="../create_page/">Add page</a></br>
+{% else %}
+<tr><td></td></tr>
+{% endif %}
+<a href="../">Back to album</a></br>

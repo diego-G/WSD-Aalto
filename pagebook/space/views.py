@@ -121,7 +121,11 @@ def delete_page(request, name, album, page):
     return HttpResponseRedirect("../../")
 
 @login_required    
-def pages(request, name, album, page):
+def pages(request, name, album):
+    if request.method == 'GET':
+        page = request.GET.get('page')
+    else:
+        page = 1;
     try:
         usr = User.objects.get(username=name)
     except User.DoesNotExist:
@@ -151,3 +155,7 @@ def change_pass(request, name):
 def change_pass_done(request, name):
     return render_to_response('space/change_pass_done.html',
              context_instance=RequestContext(request)) 
+    
+def render_javascript(request):
+    print "entra"
+    return render_to_response("js/js_page.js", mimetype="text/javascript")

@@ -1,17 +1,9 @@
 {% extends "view_template.html" %}
 {% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
 
-{% block body %}
-ID: {{ page.id }}
-Page number: {{ page.number }}
-Layout: {{ page.layout }}
+{% block js_includes %}<script type="text/javascript" src="/static/js_page.js"></script>{% endblock %}
 
-{% if user.username == owner.username %}
-<a href="../create_page/">Add page</a></br>
-{% else %}
-<tr><td></td></tr>
-{% endif %}
-<a href="../">Back to album</a></br>
+{% block body %}<div id="dynamicContent"></div>
 {% endblock %}
 
 {% block footer %}
