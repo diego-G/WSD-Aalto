@@ -1,8 +1,8 @@
-{% extends "basic_template.html" %}
+{% extends "view_template.html" %}
 
 {% block title %}Create an account{% endblock %}
 
-{% block signupForm %}
+{% block body %}
   <h1>Create an account</h1>
    <form action="" method="post">
    {% csrf_token %}  

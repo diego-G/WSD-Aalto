@@ -16,16 +16,25 @@
     </div>
     </div>
 <div class="content">
+<div class="contener">
 <div class="intro">
 	<p>Cupcake ipsum dolor sit amet. Ice cream dragée topping carrot cake icing chocolate cake. Chocolate bar marshmallow danish cotton candy.</p>
 
     <img src="/static/connecting.png">
     
-    </div>
-    </div><div class="push"></div>
 </div>
-<div class="signupForm">
-		{% block signupForm %}{% endblock %}
+<div class="socialLogin">
+    <p>Don't you have an account? <a href="/access/register/">Sign up here!</a></p>
+    <p>Do you already have an account with Twitter?</p>
+    <p><a href="/social_auth/login/twitter"><img src="/static/dark.png"></a></p>
+    <p>You can also log in with Facebook</p>
+    <p><a href="/social_auth/login/facebook"><img src="/static/facebook_login_button.png"></a></p>
+    <p>Or with your Google account</p>
+    <p><a href="/social_auth/login/google"><img src="/static/google.png"></a></p>
+    
+    </div>
+    </div>
+    </div>
 </div>
 	<div class='footer'>{% block footer %}{% endblock %}</div>
 </body>

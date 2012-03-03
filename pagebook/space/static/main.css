@@ -13,10 +13,10 @@ html,body {
 	top:0;
 	right:1;
 	left:0;
-	background-color:#272AB4;
+	background-color:#133783;
 	width:100%;
 	height: 120px;
-	margin: 0;
+	
 	
 
 }
@@ -34,7 +34,8 @@ html,body {
 }
 #logo {
 	float:left;
-	padding-left:25px;
+	padding-left:40px;
+	padding-top:20px;
 	
 }
 #loginTable td {
@@ -48,14 +49,19 @@ html,body {
 	top:120px;
 	float:none;
 	position:relative;
+	text-align:center;
 }
 .intro {
 	width:600px;
+	float:left;
+	text-align:left;
 	padding: 20px 45px 0px 15px;
 	
 }
-.push {
-	height:30px;
+.contener {
+	text-align:center;
+	max-width:1150px;
+	margin:auto;
 }
 
 .footer {
@@ -65,5 +71,15 @@ html,body {
 	font-size:12px;
 	text-align:center;
 	color:#777;
+}
+.socialLogin {
+	float:right;
+	background-color:#D9DCFF;
+	padding:20px 20px 20px 20px;
+	margin:20px 20px 20px 20px;
+	
+}
+.content {
+	text-align:center;
 }
 
