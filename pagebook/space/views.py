@@ -137,7 +137,7 @@ def pages(request, name, album):
     page_ = Page.objects.get(album=album_,id=page)   
 
     return render_to_response("space/pages.html", Context({
-        'user':request.user, 'owner':usr, 'page':page_
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_
     }))
       
 @login_required    
@@ -156,6 +156,11 @@ def change_pass_done(request, name):
     return render_to_response('space/change_pass_done.html',
              context_instance=RequestContext(request)) 
     
-def render_javascript(request):
+def render_javascript(request, name):
     print "entra"
     return render_to_response("js/js_page.js", mimetype="text/javascript")
+
+def render_page(request, name, album, page):
+    return render_to_response("space/pages_content.html", Context({
+        'user':request.user, 'owner':usr, 'page':page_
+    }))
