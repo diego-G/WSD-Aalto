@@ -8,14 +8,15 @@
 <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<div class="wrapeer">
-<div class="header">
-<a href="/"><img src="/static/logo.png"></a> 
+<div class="wrapper">
+<div class="up">
 	{% include "login_bar.html" %}
 	</div>
+    <div class="content">
 	{% block body %}{% endblock %}
     </div>
-	<div class='footer'>{% block footer %}{% endblock %}</div>
+    </div>
+	<div class='footer'>WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya</div>
 </body>
 
 </html>

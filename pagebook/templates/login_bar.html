@@ -1,5 +1,10 @@
+<div id="logo">
+<a href="/"><img src="/static/minilogo.png"></a>
+</div>
+<div id="login">
 {% if user.is_authenticated %}
-<p>Logged in as {{ user.username }}</p>
+<p>Logged in as {{ user.username }}   <a href="/access/logout/">Logout</a></p>
 {% else %}
-<a href="/">Log in</a>
+<p><a href="/">Log in</a></p>
 {% endif %}
+</div>

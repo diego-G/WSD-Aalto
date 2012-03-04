@@ -1,19 +1,12 @@
 {% extends "view_template.html" %}
 {% block title %} {% if page in pages %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
 
-{% block js_includes %}<script type="text/javascript" src="/static/js_page.js"></script>{% endblock %}
+{% block js_includes %}
+<script type="text/javascript" src="/static/js_page.js"></script>
+<script type="text/javascript" src="/static/layout.js"></script>
+{% endblock %}
 
 {% block body %}<div id="dynamicContent">
 {% include "space/pages_content.html" %}
 </div>
-{% endblock %}
-
-{% block footer %}
-{% if user.username != owner.username %}
-<a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
-{% else %}
-<tr><td></td></tr>
-{% endif %}
-<a href="/access/logout/">Logout</a></br>
-WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}
