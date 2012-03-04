@@ -3,7 +3,9 @@
 
 {% block js_includes %}<script type="text/javascript" src="/static/js_page.js"></script>{% endblock %}
 
-{% block body %}<div id="dynamicContent"></div>
+{% block body %}<div id="dynamicContent">
+{% include "space/pages_content.html" %}
+</div>
 {% endblock %}
 
 {% block footer %}
