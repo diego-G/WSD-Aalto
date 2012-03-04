@@ -30,7 +30,7 @@ def home(request, name):
         return HttpResponseRedirect("/" + another_user + "/")
     
     if request.user != usr:
-         albums = Album.objects.filter(user=usr, private=False)       
+         albums = Album.objects.filter(user=usr, private=False)
     return render_to_response("space/collections.html", RequestContext(request,{
         'user':request.user, 'owner':usr, 'albums':albums
     }))
@@ -59,7 +59,7 @@ def delete_album(request, name, album):
     #faltan los try
 
     usr = User.objects.get(username=request.user.username)
-#    Album.objects.get(user=usr, name=album).delete()
+# Album.objects.get(user=usr, name=album).delete()
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
 
@@ -75,7 +75,7 @@ def show_album(request, name, album):
     except Album.DoesNotExist:
         raise Http404
     pages = Page.objects.filter(album=album_)
-    return render_to_response("space/album.html", 
+    return render_to_response("space/album.html",
             Context({'user':request.user, 'owner':usr, 'album':pages})
     )
 
@@ -109,7 +109,7 @@ def create_page(request, name, album):
 def delete_page(request, name, album, page):
     # faltan try
     usr = User.objects.get(username=request.user.username)
-#    Album.objects.get(user=usr, name=album).delete()
+# Album.objects.get(user=usr, name=album).delete()
     album_ = Album.objects.filter(user=usr, id=album)
     page = Page.objects.get(album=album_, id=page)
     num_pag = page.number
@@ -120,7 +120,7 @@ def delete_page(request, name, album, page):
         pag.save()
     return HttpResponseRedirect("../../")
 
-@login_required    
+@login_required
 def pages(request, name, album):
     if request.method == 'GET':
         page = request.GET.get('page')
@@ -148,21 +148,21 @@ def pages(request, name, album):
         'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next
     }))
       
-@login_required    
+@login_required
 def change_pass(request, name):
-    form = PasswordChangeForm(request.user) 
+    form = PasswordChangeForm(request.user)
     if request.POST:
-            form = PasswordChangeForm(request.user,request.POST) 
+            form = PasswordChangeForm(request.user,request.POST)
             if form.is_valid():
                 form.save()
                 return HttpResponseRedirect('done/')
     return render_to_response('space/change_pass_form.html', {
             'form': form } , context_instance=RequestContext(request)
-        ) 
+        )
   
 def change_pass_done(request, name):
     return render_to_response('space/change_pass_done.html',
-             context_instance=RequestContext(request)) 
+             context_instance=RequestContext(request))
     
 def render_javascript(request, name):
     print "entra"
@@ -185,7 +185,7 @@ def render_page(request, name, album, page):
     try:
         page_next = Page.objects.get(album=album_,number=int(page)+1).number
     except Page.DoesNotExist:
-        page_next = -1   
+        page_next = -1
 
     return render_to_response("space/pages_content.html", Context({
         'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next
