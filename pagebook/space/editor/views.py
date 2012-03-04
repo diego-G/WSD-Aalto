@@ -45,7 +45,10 @@ def choose_image(request, name, album, page ):
     page_ = Page.objects.filter(album=album_)
     
     path = MEDIA_ROOT+"/images/"+usr.username
-    listing = os.listdir(path)
+    try:
+        listing = os.listdir(path)
+    except OSError:
+        listing = ''
     
     return render_to_response("space/editor/edit_page.html", RequestContext(request,{
               'user':request.user, 'album': album_, 'page':page_, 'listing': listing
