@@ -4,14 +4,7 @@
 
 This page has the layout {{ page.layout }}, so you have to choose {{ page.layout }} pictures.
 
-<script type="text/javascript" src="{{ MEDIA_URL }}edit_page/edit_page.js"></script>
-<br>
-<button onclick="loadImage1()">Load Image Demo 1</button><br/>
-<button onclick="loadImage2()">Load Image Demo 2</button> <span id="status"></span><br/><br/>
-<br>
-<input id="url" type="text">
-<button onclick="loadImage3()">Load</button>
-<script type="text/javascript" src="{{ MEDIA_URL }}edit_page/load_image.js"></script>
+
 {% endblock %}
 {% block footer %}
 <a href="/access/logout/">Logout</a></br>
