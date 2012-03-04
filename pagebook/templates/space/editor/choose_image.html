@@ -1,0 +1,32 @@
+{% extends "view_template.html" %}
+{% block title %} Choosing image {% endblock %}
+{% block body  %}
+
+Choosing image for the page number {{ page.number }} of  {{ user.username }}'s Album {{ album.name }}.
+<br>
+You have to click in the image that you want.
+<table>
+<tr>
+{% for file in listing %}
+<td>
+<table>
+<tr><td> 
+<a href="../../asign_image/{{nImage}}/{{file}}">
+ <img src="{{ MEDIA_URL }}images/{{user.username}}/{{file}}"width="150" height="110"> 
+</a>
+</td></tr>
+</table>
+</td>
+{% endfor %}
+</tr>
+</table>
+<br>
+<a href="../../">Cancel</a></br>
+<br>
+<a href="../../../">Back to album</a></br>
+{% endblock %}
+
+{% block footer %}
+<a href="/access/logout/">Logout</a></br>
+WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
+{% endblock %}

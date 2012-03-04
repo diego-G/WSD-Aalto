@@ -33,7 +33,8 @@ def edit_page(request, name, album, page ):
               'user':request.user, 'album': album_, 'page':page_, 'listing': listing
     }))
     
-def choose_image(request, name, album, page ):
+def choose_image(request, name, album, page, nImage):
+    nImage = int(nImage)
     try:
         usr = User.objects.get(username=name)
     except User.DoesNotExist:
@@ -42,7 +43,7 @@ def choose_image(request, name, album, page ):
         album_ = Album.objects.get(user=usr, id=album)
     except Album.DoesNotExist:
         raise Http404
-    page_ = Page.objects.filter(album=album_)
+    page_ = Page.objects.get(album=album_, number=page)
     
     path = MEDIA_ROOT+"/images/"+usr.username
     try:
@@ -50,6 +51,25 @@ def choose_image(request, name, album, page ):
     except OSError:
         listing = ''
     
-    return render_to_response("space/editor/edit_page.html", RequestContext(request,{
-              'user':request.user, 'album': album_, 'page':page_, 'listing': listing
+    return render_to_response("space/editor/choose_image.html", RequestContext(request,{
+             'user':request.user, 'album': album_, 'page':page_, 'listing': listing, 'nImage': nImage
     }))
+    
+def asign_image(request, name, album, page, nImage, file):
+    
+    try:
+        usr = User.objects.get(username=name)
+    except User.DoesNotExist:
+        raise Http404
+    try:
+        album_ = Album.objects.get(user=usr, id=album)
+    except Album.DoesNotExist:
+        raise Http404
+    page_ = Page.objects.get(album=album_, number=page)
+    
+    path = MEDIA_ROOT+"/images/"+usr.username+"/"+file
+    print path
+    
+    
+    
+

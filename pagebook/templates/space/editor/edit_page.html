@@ -3,9 +3,38 @@
 {% block body  %}
 
 This page has the layout {{ page.layout }}, so you have to choose {{ page.layout }} pictures.
+<table>
+<tr>
+<td>
+{% if page.layout == 1 %}
+<table>
+<tr><td><a href="choose_image/1/">Click here to add image</a></td></tr>
+<tr><td></td></tr>
+</table>
+{% else %} {% if page.layout == 2 %}
+<table>
+<tr><td><a href="choose_image/1/">Click here to add image 1</a></td></tr>
+<tr><td><a href="choose_image/2/">Click here to add image 2</a></td></tr>
+<tr><td></td></tr>
+</table>
 
-
+{% else %} {% if page.layout == 3 %}
+<table>
+<tr><td><a href="choose_image/1/">Click here to add image 1</a></td></tr>
+<tr><td><a href="choose_image/2/">Click here to add image 2</a></td></tr>
+<tr><td><a href="choose_image/3/">Click here to add image 3</a></td></tr>
+<tr><td></td></tr>
+</table>
+{% endif %}
+{% endif %}
+{% endif %}
+</table>
+</td>
+</tr>
+<br>
+<a href="../../">Cancel</a></br>
 {% endblock %}
+
 {% block footer %}
 <a href="/access/logout/">Logout</a></br>
 WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
