@@ -126,7 +126,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'access',
     'space',
-    'social_auth'
+    'space.editor',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging

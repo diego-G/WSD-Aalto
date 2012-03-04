@@ -134,10 +134,18 @@ def pages(request, name, album):
         album_ = Album.objects.get(user=usr, id=album)
     except Album.DoesNotExist:
         raise Http404
-    page_ = Page.objects.get(album=album_,id=page)   
+    page_ = Page.objects.get(album=album_,number=page)
+    try:
+        page_back = Page.objects.get(album=album_,number=int(page)-1)
+    except Page.DoesNotExist:
+        page_back = -1
+    try:
+        page_next = Page.objects.get(album=album_,number=int(page)+1)
+    except Page.DoesNotExist:
+        page_next = -1
 
     return render_to_response("space/pages.html", Context({
-        'user':request.user, 'owner':usr, 'album': album_, 'page':page_
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back.id, 'page_next':page_next.id
     }))
       
 @login_required    
@@ -161,6 +169,24 @@ def render_javascript(request, name):
     return render_to_response("js/js_page.js", mimetype="text/javascript")
 
 def render_page(request, name, album, page):
+    try:
+        usr = User.objects.get(username=name)
+    except User.DoesNotExist:
+        raise Http404
+    try:
+        album_ = Album.objects.get(user=usr, id=album)
+    except Album.DoesNotExist:
+        raise Http404
+    page_ = Page.objects.get(album=album_,number=page)
+    try:
+        page_back = Page.objects.get(album=album_,number=page-1)
+    except Page.DoesNotExist:
+        page_back = -1
+    try:
+        page_next = Page.objects.get(album=album_,number=page+1)
+    except Page.DoesNotExist:
+        page_next = -1   
+
     return render_to_response("space/pages_content.html", Context({
-        'user':request.user, 'owner':usr, 'page':page_
+        'user':request.user, 'owner':usr, 'page':page_, 'page_back':page_back.number, 'page_next':page_next.number
     }))

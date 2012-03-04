@@ -1,21 +1,15 @@
 
 $(function() {
-	$.extend({
-		  getUrlVars: function(){
-		    var vars = [], hash;
-		    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		    for(var i = 0; i < hashes.length; i++) {
-		      hash = hashes[i].split('=');
-		      vars.push(hash[0]);
-		      vars[hash[0]] = hash[1];
-		    }
-		    return vars;
-		  },
-		  getUrlVar: function(name){
-		    return $.getUrlVars()[name];
-		  }
-		});
-	console.log('entra!!');
-	var vars = $.getUrlVar('page');
-	$("#dynamicContent").load("/diego/2/view/?page=" + vars);
+	$("#back").live('click', function() {
+        // Take the target url from the link that was clicked
+        var url = $("#back a").attr("href");
+        
+        // Replace the contents of #tableContainer with data 
+        // that is dynamically from the link's target url
+        $("#dynamicContent").load(url);
+        
+        // Return false to prevent the default behavior of "click" (changing the page)
+        return false;
+    });
+
 } );
