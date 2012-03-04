@@ -9,8 +9,18 @@
 <div id="wrapper">
 
 {% if page.layout == 1 %}
-<div id="oneFirst">Layout <br />
-<img src="" /></div>
+<div id="oneFirst">Layout 1<br />
+<img src="/static/dark.png" />
+</div>
+{% endif %}
+{% if page.layout == 2 %}
+<div id="twoFirst">Image 1</div>
+<div id="twoSecond">Image 2</div>
+{% endif %}
+{% if page.layout == 3 %}
+<div id="threeFirst">Image 1</div>
+<div id="threeSecond">Image 2</div>
+<div id="threeThird">Image 3</div>
 {% endif %}
 
 
