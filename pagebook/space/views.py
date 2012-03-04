@@ -134,7 +134,8 @@ def pages(request, name, album):
         album_ = Album.objects.get(user=usr, id=album)
     except Album.DoesNotExist:
         raise Http404
-    page_ = Page.objects.get(album=album_,id=page)   
+    #page_ = Page.or
+    bjects.get(album=album_,id=page)   
 
     return render_to_response("space/pages.html", Context({
         'user':request.user, 'owner':usr, 'album': album_, 'page':page_
@@ -162,5 +163,5 @@ def render_javascript(request, name):
 
 def render_page(request, name, album, page):
     return render_to_response("space/pages_content.html", Context({
-        'user':request.user, 'owner':usr, 'page':page_
+       
     }))
