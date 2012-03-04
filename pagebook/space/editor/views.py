@@ -24,7 +24,10 @@ def edit_page(request, name, album, page ):
     page_ = Page.objects.get(album=album_, number=page)
     
     path = MEDIA_ROOT+"/images/"+usr.username
-    listing = os.listdir(path)
+    try:
+        listing = os.listdir(path)
+    except OSError:
+        listing = ''
     
     return render_to_response("space/editor/edit_page.html", RequestContext(request,{
               'user':request.user, 'album': album_, 'page':page_, 'listing': listing
