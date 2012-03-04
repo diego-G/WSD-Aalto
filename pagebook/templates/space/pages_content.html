@@ -1,6 +1,9 @@
 <div id="handler">
-<div id="back"><a href="{% url space.views.render_page owner.username album.id page_back %}">
+<div id="back">
+{% if page_back != -1 %}
+<a href="{% url space.views.render_page owner.username album.id page_back %}">
 <img src="/static/left.png" /></a>
+{% endif %}
 </div>
 
 <div id="wrapper">
@@ -12,7 +15,10 @@
 
 </div>
 <div id="next">
-<img src="/static/right.png" />
+{% if page_next != -1 %}
+<a href="{% url space.views.render_page owner.username album.id page_next %}">
+<img src="/static/right.png" /></a>
+{% endif %}
 </div>
 </div>
 ID: {{ page.id }}
