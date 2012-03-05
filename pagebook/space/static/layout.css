@@ -1,2 +1,35 @@
 @CHARSET "UTF-8";
 
+#handler {
+	text-align:center;
+	width:100%;
+	margin:auto;
+}
+#next, #back {
+	width:60px;
+}
+#images {
+	width:600px;
+}
+#dynamicContent {
+	text-align:center;
+	min-width:100%;
+	margin:0px;
+}
+
+#oneFirst {
+	height:100%;
+	width:100%;
+	border:dashed #000 2px;
+}
+#twoFirst {
+	width:100%;
+	height:50%;
+	border:dashed #000 2px;
+}
+#twoSecond {
+	width:100%;
+	height:50%;
+	border:dashed #000 2px;
+}
+

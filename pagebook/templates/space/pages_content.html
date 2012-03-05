@@ -1,43 +1,51 @@
-<div id="handler">
-<div id="back">
+<table id="handler">
+<tr><td id="back">
+
 {% if page_back != -1 %}
 <a href="{% url space.views.render_page owner.username album.id page_back %}">
 <img src="/static/left.png" /></a>
 {% endif %}
-</div>
+</td>
+<td id="images">
 
-<div id="wrapper">
+    {% if page.layout == 1 %}
+    <div id="oneFirst">Layout 1<br />
+    <img src="/static/dark.png" />
+    {% if user.username == owner.username %}
+    <a href="../create_page/">Add page</a></br>
+    {% endif %}
+    <a href="../">Back to album</a></br>
+    </div>
+    {% endif %}
+    
+    {% if page.layout == 2 %}
+    <div id="twoFirst">Image 1</div>
+    <div id="twoSecond">Image 2</div>
+    {% if user.username == owner.username %}
+    <a href="../create_page/">Add page</a></br>
+    {% endif %}
+    <a href="../">Back to album</a></br>
+    {% endif %}
+    
+    {% if page.layout == 3 %}
+    <div id="threeFirst">Image 1</div>
+    <div id="threeSecond">Image 2</div>
+    <div id="threeThird">Image 3</div>
+    {% if user.username == owner.username %}
+    <a href="../create_page/">Add page</a></br>
+    {% endif %}
+    <a href="../">Back to album</a></br>
+    {% endif %}
 
-{% if page.layout == 1 %}
-<div id="oneFirst">Layout 1<br />
-<img src="/static/dark.png" />
-</div>
-{% endif %}
-{% if page.layout == 2 %}
-<div id="twoFirst">Image 1</div>
-<div id="twoSecond">Image 2</div>
-{% endif %}
-{% if page.layout == 3 %}
-<div id="threeFirst">Image 1</div>
-<div id="threeSecond">Image 2</div>
-<div id="threeThird">Image 3</div>
-{% endif %}
-
-
-</div>
-<div id="next">
+</td>
+<td id="next">
 {% if page_next != -1 %}
 <a href="{% url space.views.render_page owner.username album.id page_next %}">
 <img src="/static/right.png" /></a>
 {% endif %}
-</div>
-</div>
-ID: {{ page.id }}
-Page number: {{ page.number }}
-Layout: {{ page.layout }}
-{% if user.username == owner.username %}
-<a href="../create_page/">Add page</a></br>
-{% else %}
-<tr><td></td></tr>
-{% endif %}
-<a href="../">Back to album</a></br>
+
+</td>
+</tr>
+</table>
+
+
