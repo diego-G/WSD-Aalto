@@ -1,25 +1,8 @@
 @CHARSET "UTF-8";
 
-#Style1 {
-position:absolute;
-visibility:hidden;
-border:solid 1px #CCC;
-padding:5px;
-
+#formLayout {
+	text-align: center;
 }
-
-#Style2 {
-position:absolute;
-visibility:hidden;
-border:solid 1px #CCC;
-padding:5px;
-
+#layoutTable {
+	margin:auto;
 }
-
-#Style3 {
-position:absolute;
-visibility:hidden;
-border:solid 1px #CCC;
-padding:5px;
-
-} 
