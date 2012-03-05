@@ -1,11 +1,9 @@
 function validateForm()
 {
-var x=document.forms["myForm"]["id_name"];
-if (x!=null || x!="")
+var x=document.forms["myForm"]["id_name"].value;
+if (x==null || x=="")
   {
-  return true;
-  } else {
-	  alert("Please, choose a layout");
-	  return false;
+  alert("Name of album must be filled out");
+  return false;
   }
 }
