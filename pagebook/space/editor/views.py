@@ -68,7 +68,14 @@ def asign_image(request, name, album, page, nImage, file):
     page_ = Page.objects.get(album=album_, number=page)
     
     path = MEDIA_ROOT+"/images/"+usr.username+"/"+file
-    print path
+
+    image = Image(name=file, file=path)
+    page_.images.add(image)
+
+    
+    return render_to_response("space/editor/image.html", RequestContext(request,{
+             'user':request.user,'image' : image,
+    }))
     
     
     

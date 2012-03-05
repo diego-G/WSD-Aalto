@@ -9,10 +9,11 @@ from django.contrib.auth.models import User
 import datetime
 
 class Image(models.Model):
+    name = models.CharField(max_length=255)
     file = models.ImageField(upload_to='/media/')
     
     def __unicode__(self):
-        return self.file
+        return self.name
 
 class Album(models.Model):
     name = models.CharField(max_length=255)
