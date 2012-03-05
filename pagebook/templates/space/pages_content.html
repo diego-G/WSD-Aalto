@@ -7,22 +7,34 @@
 {% endif %}
 </td>
 <td id="images">
-
     {% if page.layout == 1 %}
     <div id="oneFirst">
-		<img class="img1" src="{{img1.file}}" />
+    <a href="{% url choose_image owner.username album.id page.id 1%}"><img class="img1" src="{{img1.file}}" /></a>		
     </div>
     {% endif %}
     
     {% if page.layout == 2 %}
-    <div id="twoFirst"><img class="img2" src="{{img1.file}}" /></div>
-    <div id="twoSecond"><img class="img2" src="{{img2.file}}" /></div>
+    <div id="twoFirst">
+    	<a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img2" src="{{img1.file}}" /></a>
+    </div>
+    <div id="twoSecond">
+    	<a href="{% url choose_image owner.username album.id page.number 2%}"><img class="img2" src="{{img2.file}}" /></a>
+    </div>
     {% endif %}
     
     {% if page.layout == 3 %}
-    <div id="threeFirst"><img class="img31" src="{{img1.file}}" /></div>
-    <div id="threeSecond"><img class="img32" src="{{img2.file}}" /></div>
-    <div id="threeThird"><img class="img32" src="{{img3.file}}" /></div>
+    <div id="threeFirst">
+    	<a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img31" src="{{img1.file}}" /></a>
+    </div>
+    </div>
+    <div id="threeSecond">
+    	<a href="{% url choose_image owner.username album.id page.number 2%}"><img class="img32" src="{{img2.file}}" /></a>
+    </div>
+    </div>
+    <div id="threeThird">
+    	<a href="{% url choose_image owner.username album.id page.number 3%}"><img class="img32" src="{{img3.file}}" /></a>
+    </div>
+    </div>
 
     {% endif %}
 
