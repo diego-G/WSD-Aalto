@@ -55,7 +55,7 @@ def choose_image(request, name, album, page, nImage):
              'user':request.user, 'album': album_, 'page':page_, 'listing': listing, 'nImage': nImage
     }))
     
-def asign_image(request, name, album, page, nImage, file):
+def asign_image(request, name, album, page, nImage, name_file):
     
     try:
         usr = User.objects.get(username=name)
@@ -67,11 +67,18 @@ def asign_image(request, name, album, page, nImage, file):
         raise Http404
     page_ = Page.objects.get(album=album_, number=page)
     
-    path = MEDIA_ROOT+"/images/"+usr.username+"/"+file
+    path = MEDIA_ROOT+"/images/"+usr.username+"/"+name_file
 
-    image = Image(name=file, file=path)
+    image = Image(name=name_file, file=path, pos=nImage)
+    image.save()
+  
+    filtered = page_.images.filter(pos=nImage)
+    for filt in filtered:
+        page_.images.remove(filt)
+    page_.save()
+        
     page_.images.add(image)
-
+    page_.save()
     
     return render_to_response("space/editor/image.html", RequestContext(request,{
              'user':request.user,'image' : image,

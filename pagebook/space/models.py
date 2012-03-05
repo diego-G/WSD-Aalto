@@ -10,6 +10,7 @@ import datetime
 
 class Image(models.Model):
     name = models.CharField(max_length=255)
+    pos = models.IntegerField()
     file = models.ImageField(upload_to='/media/')
     
     def __unicode__(self):
@@ -19,8 +20,7 @@ class Album(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(User)
     private = models.BooleanField()
-    
-    
+       
     def was_published_today(self):
         return self.pub_date.date() == datetime.date.today()
     

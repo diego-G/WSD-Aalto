@@ -87,15 +87,14 @@ def create_page(request, name, album):
             rel_page = Page.objects.filter(album=rel_album.id)
             length = len(rel_page)
             layout_ = request.POST.get("layout")
-            page = Page(album=rel_album,number=length+1,layout=layout_)
+            page = Page(album=rel_album,number=int(length)+1,layout=int(layout_))
         except Album.DoesNotExist:
             raise Http404
         
         form = PageForm(request.POST, instance=page) # A form bound to the POST data
-        
+
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
-            # ...
             form.save()
             return HttpResponseRedirect('../') # Redirect after POST
     else:
@@ -165,7 +164,6 @@ def change_pass_done(request, name):
              context_instance=RequestContext(request))
     
 def render_javascript(request, name):
-    print "entra"
     return render_to_response("js/js_page.js", mimetype="text/javascript")
 
 def render_page(request, name, album, page):
