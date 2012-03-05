@@ -31,14 +31,9 @@ The user has not any album that you are able to see.
 <a href="create_album/">Create new album!</a></br>
 <a href="images/">IMAGES</a>
 {% endif %}
-{% endblock %}
-
-{% block footer %}
 <form action="." method="post"> {% csrf_token %}
 Find another user's space: <input type="text" name="another_user" />
 <input type="submit" value="Submit" />
 </form> 
 <a href="change_pass/">Do you want to change your password?</a></br>
-<a href="/access/logout/">Logout</a></br>
-WSD - Web Software Development Authors: Daniel Bailo - Diego Garcia - Xavi Magrinya 
 {% endblock %}
