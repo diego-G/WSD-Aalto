@@ -3,31 +3,16 @@
 {% block body  %}
 
 This page has the layout {{ page.layout }}, so you have to choose {{ page.layout }} pictures.
-<table>
+
 <tr>
 <td>
-{% if page.layout == 1 %}
 <table>
-<tr><td><a href="choose_image/1/">Click here to add image</a></td></tr>
+<tr><td>
+{% for img in set_images %}
+<a href="choose_image/{{img.pos}}/"><img src="{{img.file}}" width="150" height="110"/></a>
+{% endfor %}
+</td></tr>
 <tr><td></td></tr>
-</table>
-{% else %} {% if page.layout == 2 %}
-<table>
-<tr><td><a href="choose_image/1/">Click here to add image 1</a></td></tr>
-<tr><td><a href="choose_image/2/">Click here to add image 2</a></td></tr>
-<tr><td></td></tr>
-</table>
-
-{% else %} {% if page.layout == 3 %}
-<table>
-<tr><td><a href="choose_image/1/">Click here to add image 1</a></td></tr>
-<tr><td><a href="choose_image/2/">Click here to add image 2</a></td></tr>
-<tr><td><a href="choose_image/3/">Click here to add image 3</a></td></tr>
-<tr><td></td></tr>
-</table>
-{% endif %}
-{% endif %}
-{% endif %}
 </table>
 </td>
 </tr>

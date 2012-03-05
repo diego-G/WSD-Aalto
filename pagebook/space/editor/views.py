@@ -8,7 +8,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import Context, RequestContext
 
-from settings import MEDIA_ROOT
+from settings import MEDIA_ROOT, MEDIA_URL
 import os
 
 @login_required
@@ -22,7 +22,7 @@ def edit_page(request, name, album, page ):
     except Album.DoesNotExist:
         raise Http404
     page_ = Page.objects.get(album=album_, number=page)
-    
+    set_images = page_.images.all().order_by('pos')
     path = MEDIA_ROOT+"/images/"+usr.username
     try:
         listing = os.listdir(path)
@@ -30,7 +30,7 @@ def edit_page(request, name, album, page ):
         listing = ''
     
     return render_to_response("space/editor/edit_page.html", RequestContext(request,{
-              'user':request.user, 'album': album_, 'page':page_, 'listing': listing
+              'user':request.user, 'album': album_, 'page':page_, 'set_images': set_images,
     }))
     
 def choose_image(request, name, album, page, nImage):
@@ -67,7 +67,7 @@ def asign_image(request, name, album, page, nImage, name_file):
         raise Http404
     page_ = Page.objects.get(album=album_, number=page)
     
-    path = MEDIA_ROOT+"/images/"+usr.username+"/"+name_file
+    path = MEDIA_URL+"/images/"+usr.username+"/"+name_file
 
     image = Image(name=name_file, file=path, pos=nImage)
     image.save()
@@ -80,10 +80,4 @@ def asign_image(request, name, album, page, nImage, name_file):
     page_.images.add(image)
     page_.save()
     
-    return render_to_response("space/editor/image.html", RequestContext(request,{
-             'user':request.user,'image' : image,
-    }))
-    
-    
-    
-
+    return HttpResponseRedirect("../../")

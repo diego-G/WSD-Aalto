@@ -10,7 +10,7 @@ from django.http import (HttpResponse, HttpResponseRedirect,
 from form import ImageUploadForm
 
 from django.contrib.auth.decorators import login_required
-from settings import MEDIA_ROOT
+from settings import MEDIA_URL,MEDIA_ROOT
 import os
 
 @login_required

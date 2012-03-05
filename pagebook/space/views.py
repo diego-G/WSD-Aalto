@@ -11,6 +11,8 @@ from django.core.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 
+from settings import MEDIA_URL,MEDIA_ROOT
+
 @login_required
 def home(request, name):
     c = {}
@@ -87,7 +89,16 @@ def create_page(request, name, album):
             rel_page = Page.objects.filter(album=rel_album.id)
             length = len(rel_page)
             layout_ = request.POST.get("layout")
-            page = Page(album=rel_album,number=int(length)+1,layout=int(layout_))
+            page = Page(album=rel_album,number=int(length)+1,layout=int(layout_),)
+            page.save()
+            
+            for cont in range(int(layout_)): 
+                img = Image(name="emptySpace.gif",pos=cont, 
+                    file= MEDIA_URL+"create_page/emptySpace.gif")
+                img.save()
+                page.images.add(img)
+                page.save()
+            
         except Album.DoesNotExist:
             raise Http404
         
@@ -96,6 +107,7 @@ def create_page(request, name, album):
         if form.is_valid(): # All validation rules pass
             # Process the data in form.cleaned_data
             form.save()
+            
             return HttpResponseRedirect('../') # Redirect after POST
     else:
         form = PageForm() # An unbound form
