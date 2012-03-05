@@ -10,25 +10,19 @@
 
     {% if page.layout == 1 %}
     <div id="oneFirst">
-		{% for img in images %}
-		<img id="img" src="{{img.file}}" />
-		{% endfor %}
+		<img class="img1" src="{{img1.file}}" />
     </div>
     {% endif %}
     
     {% if page.layout == 2 %}
-    <div id="twoFirst">Image 1</div>
-    <div id="twoSecond">Image 2</div>
-    {% if user.username == owner.username %}
-    <a href="../create_page/">Add page</a></br>
-    {% endif %}
-    <a href="../">Back to album</a></br>
+    <div id="twoFirst"><img class="img2" src="{{img1.file}}" /></div>
+    <div id="twoSecond"><img class="img2" src="{{img2.file}}" /></div>
     {% endif %}
     
     {% if page.layout == 3 %}
-    <div id="threeFirst">Image 1</div>
-    <div id="threeSecond">Image 2</div>
-    <div id="threeThird">Image 3</div>
+    <div id="threeFirst"><img class="img31" src="{{img1.file}}" /></div>
+    <div id="threeSecond"><img class="img32" src="{{img2.file}}" /></div>
+    <div id="threeThird"><img class="img32" src="{{img3.file}}" /></div>
 
     {% endif %}
 
@@ -47,3 +41,4 @@
     <a href="../create_page/">Add page</a></br>
     {% endif %}
     <a href="../">Back to album</a></br>
+<script type="text/javascript" src="/static/js_image.js"></script>

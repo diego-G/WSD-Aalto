@@ -154,8 +154,24 @@ def pages(request, name, album):
         page_next = Page.objects.get(album=album_,number=int(page)+1).number
     except Page.DoesNotExist:
         page_next = -1
+    imgs = page_.images.all()
+    if len(imgs)  > 0:
+        img1 = imgs[0]
+        if len(imgs) > 1:
+            img2 = imgs[1]
+            if len(imgs) > 2:
+                img3 = imgs[2]
+            else:
+                img3 = ''
+        else:
+            img2 = ''
+            img3 = ''
+    else:
+        img1 = ''
+        img2 = ''
+        img3 = ''
     return render_to_response("space/pages.html", Context({
-        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'images':page_.images.all()
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'img1':img1, 'img2':img2, 'img3':img3
     }))
       
 @login_required
@@ -195,8 +211,23 @@ def render_page(request, name, album, page):
         page_next = Page.objects.get(album=album_,number=int(page)+1).number
     except Page.DoesNotExist:
         page_next = -1
-    
+    imgs = page_.images.all()
+    if len(imgs)  > 0:
+        img1 = imgs[0]
+        if len(imgs) > 1:
+            img2 = imgs[1]
+            if len(imgs) > 2:
+                img3 = imgs[2]
+            else:
+                img3 = ''
+        else:
+            img2 = ''
+            img3 = ''
+    else:
+        img1 = ''
+        img2 = ''
+        img3 = ''
     return render_to_response("space/pages_content.html", Context({
-        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'images':page_.images.all()
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'img1':img1, 'img2':img2, 'img3':img3
     }))
     
