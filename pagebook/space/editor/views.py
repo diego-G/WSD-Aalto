@@ -10,6 +10,8 @@ from django.template import Context, RequestContext
 
 from settings import MEDIA_ROOT, MEDIA_URL
 import os
+from urlparse import urlparse
+from urllib import urlretrieve
 
 @login_required
 def edit_page(request, name, album, page ):
@@ -80,3 +82,10 @@ def asign_image(request, name, album, page, nImage, name_file):
     page_.save()
     
     return HttpResponseRedirect("../../")
+
+def upload_image_flickr(request, name, album, page, nImage):
+    url = request.GET.get('url')  
+    filename = os.path.basename(url)
+    urlretrieve(url, MEDIA_ROOT+"/images/"+name+"/"+filename)
+    
+    return HttpResponseRedirect("../../../asign_image/"+nImage+"/"+filename)    

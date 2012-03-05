@@ -1,5 +1,6 @@
 {% extends "view_template.html" %}
 {% block title %} Editing page {{ page.id }} of  {{ user.username }}'s Album {{ album.name }} {% endblock %}
+
 {% block body  %}
 
 This page has the layout {{ page.layout }}, so you have to choose {{ page.layout }} pictures.
@@ -17,5 +18,6 @@ This page has the layout {{ page.layout }}, so you have to choose {{ page.layout
 </td>
 </tr>
 <br>
+
 <a href="../../">Back</a></br>
 {% endblock %}

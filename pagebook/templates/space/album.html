@@ -27,9 +27,30 @@ No pages in this album.
 </table>
 </ br>
 {% if user.username == owner.username %}
-<a href="create_page/">Add page</a>
+<a href="create_page/">Add page</a></br>
 
 {% endif %}
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="diego_G_1988" data-lang="es">Twittear</a>
+<script>
+	!function(d,s,id){
+		var js,fjs=d.getElementsByTagName(s)[0];
+		if(!d.getElementById(id)){js=d.createElement(s);
+		js.id=id;
+		js.src="//platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);
+		}}(document,"script","twitter-wjs");
+</script>
+
+<div class="g-plusone" data-size="medium" data-annotation="inline"></div>
+
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 
 {% if user.username != owner.username %}
 <a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
