@@ -10,8 +10,8 @@ from django.core.context_processors import csrf
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-
-from settings import MEDIA_URL,MEDIA_ROOT
+from settings import MEDIA_ROOT, MEDIA_URL
+import os
 
 @login_required
 def home(request, name):
@@ -154,9 +154,8 @@ def pages(request, name, album):
         page_next = Page.objects.get(album=album_,number=int(page)+1).number
     except Page.DoesNotExist:
         page_next = -1
-
     return render_to_response("space/pages.html", Context({
-        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'images':page_.images.all()
     }))
       
 @login_required
@@ -196,8 +195,8 @@ def render_page(request, name, album, page):
         page_next = Page.objects.get(album=album_,number=int(page)+1).number
     except Page.DoesNotExist:
         page_next = -1
-
+    
     return render_to_response("space/pages_content.html", Context({
-        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next
+        'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 'page_next':page_next, 'images':page_.images.all()
     }))
     

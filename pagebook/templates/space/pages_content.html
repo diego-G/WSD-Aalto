@@ -9,12 +9,10 @@
 <td id="images">
 
     {% if page.layout == 1 %}
-    <div id="oneFirst">Layout 1<br />
-    <img src="/static/dark.png" />
-    {% if user.username == owner.username %}
-    <a href="../create_page/">Add page</a></br>
-    {% endif %}
-    <a href="../">Back to album</a></br>
+    <div id="oneFirst">
+		{% for img in images %}
+		<img id="img" src="{{img.file}}" />
+		{% endfor %}
     </div>
     {% endif %}
     
@@ -31,10 +29,7 @@
     <div id="threeFirst">Image 1</div>
     <div id="threeSecond">Image 2</div>
     <div id="threeThird">Image 3</div>
-    {% if user.username == owner.username %}
-    <a href="../create_page/">Add page</a></br>
-    {% endif %}
-    <a href="../">Back to album</a></br>
+
     {% endif %}
 
 </td>
@@ -48,4 +43,7 @@
 </tr>
 </table>
 
-
+    {% if user.username == owner.username %}
+    <a href="../create_page/">Add page</a></br>
+    {% endif %}
+    <a href="../">Back to album</a></br>
