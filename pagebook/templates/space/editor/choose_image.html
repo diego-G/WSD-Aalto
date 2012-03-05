@@ -7,6 +7,9 @@ Choosing image for the page number {{ page.number }} of  {{ user.username }}'s A
 You have to click in the image that you want.
 <table>
 <tr>
+
+{% if listing %}
+These are the images in your database.
 {% for file in listing %}
 <td>
 <table>
@@ -20,10 +23,14 @@ You have to click in the image that you want.
 {% endfor %}
 </tr>
 </table>
+{% else %}
+You don't have images in your database.<br>
+<a href="{% url space.images.views.images user.username%}">Click here to start to upload images!</a>
+{% endif %}
 <br>
 <a href="../../">Cancel</a></br>
 <br>
-<a href="../../../">Back to album</a></br>
+<a href="../../../../">Back to album</a></br>
 {% endblock %}
 
 {% block footer %}

@@ -1,5 +1,8 @@
 {% extends "view_template.html" %}
 {% block title %} {{ user.username }}'s pictures {% endblock %}
+{% block js_includes %}
+<script type="text/javascript" src="{{ MEDIA_URL }}/images/images.js"></script>
+{% endblock %}
 {% block body  %}
 <table>
 <tr>
@@ -15,12 +18,14 @@
 </table>
 
 <h1>Upload more images:</h1>
-<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+<form name="myForm" enctype="multipart/form-data" action="" onsubmit="return validateForm()" method="post">{% csrf_token %}
     <table>
         {{ form.as_table }}
     </table>
     <input type="submit" value="Upload image">
 </form>
+</head>
+
 
 {% endblock %}
 

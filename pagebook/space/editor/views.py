@@ -49,8 +49,7 @@ def choose_image(request, name, album, page, nImage):
     try:
         listing = os.listdir(path)
     except OSError:
-        listing = ''
-    
+        listing = []
     return render_to_response("space/editor/choose_image.html", RequestContext(request,{
              'user':request.user, 'album': album_, 'page':page_, 'listing': listing, 'nImage': nImage
     }))

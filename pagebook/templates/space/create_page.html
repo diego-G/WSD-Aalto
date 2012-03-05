@@ -1,9 +1,11 @@
 {% extends "view_template.html" %}
-{% block body %}
 
+{% block js_includes %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/create_page/create_layouts.css">
 <script type="text/javascript" src="{{ MEDIA_URL }}/create_page/create_layouts.js"></script>
+{% endblock %}
 
+{% block body %}
 <form action="." method="post" id="form"> {% csrf_token %}
 <input type="radio" name="layout" value="1">Layout 1
 <input type="radio" name="layout" value="2">Layout 2
@@ -19,7 +21,7 @@
 <div id="Style3"><img src="{{ MEDIA_URL }}layouts/NorthenLight3.jpeg"></div>		
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<a href="../">Cancel</a></br>
+<a href="../">Back</a></br>
 
 {% endblock %}
 
