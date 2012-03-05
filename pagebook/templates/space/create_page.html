@@ -1,18 +1,20 @@
 {% extends "view_template.html" %}
 
 {% block js_includes %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/create_page/create_layouts.css">
-<script type="text/javascript" src="{{ MEDIA_URL }}/create_page/create_layouts.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}create_page/create_layouts.css">
+<script type="text/javascript" src="{{ MEDIA_URL }}create_page/create_layouts.js"></script>
 <script src="/static/js_page.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block body %}
-<form action="." method="post" id="form"> {% csrf_token %}
-<input type="radio" name="layout" value="1">Layout 1
+<form name="myForm" action="." method="post" id="form"> {% csrf_token %}
+<input type="radio" name="layout" value="1" checked="true">Layout 1
 <input type="radio" name="layout" value="2">Layout 2
 <input type="radio" name="layout" value="3">Layout 3
 <input type="submit" value="Create page">
 </form>
+
+
 
 <a href="{{ MEDIA_URL }}layouts/NorthenLight1.jpeg" onMouseOver="ShowPicture('Style1',1)" onMouseOut="ShowPicture('Style1',0)">Preview Layout 1</a>
 <div id="Style1"><img src="{{ MEDIA_URL }}layouts/NorthenLight1.jpeg"></div>		
