@@ -1,6 +1,15 @@
 {% extends "view_template.html" %}
 {% block title %} {% if page in album %}{{ page.album }}{% endif %} - {{ user.username }}'s Album {% endblock %}
 {% block body %}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=252468388172907";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <table>
 <tr>
 {% for page in album %}
@@ -51,6 +60,8 @@ No pages in this album.
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
+
+<div class="fb-like" data-send="true" data-width="450" data-show-faces="false" data-font="verdana"></div>
 
 {% if user.username != owner.username %}
 <a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
