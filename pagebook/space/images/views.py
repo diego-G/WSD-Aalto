@@ -32,7 +32,6 @@ def images(request, name):
     else:
         if request.user==usr:  
             form = ImageUploadForm()
-
             try:
                 os.mkdir(os.path.join(MEDIA_ROOT+"/images/", usr.username))
             except OSError:

@@ -69,7 +69,6 @@ def asign_image(request, name, album, page, nImage, name_file):
     page_ = Page.objects.get(album=album_, number=page)
     
     path = MEDIA_URL+"/images/"+usr.username+"/"+name_file
-
     image = Image(name=name_file, file=path, pos=nImage)
     image.save()
   

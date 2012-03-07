@@ -93,7 +93,7 @@ def create_page(request, name, album):
             page.save()
             
             for cont in range(int(layout_)): 
-                img = Image(name="emptySpace.gif",pos=cont, 
+                img = Image(name="emptySpace.gif",pos=cont+1, 
                     file= MEDIA_URL+"create_page/emptySpace.gif")
                 img.save()
                 page.images.add(img)
