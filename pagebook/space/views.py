@@ -10,7 +10,7 @@ from django.core.context_processors import csrf
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from settings import MEDIA_ROOT, MEDIA_URL
+from settings import MEDIA_ROOT, MEDIA_URL, STATIC_URL
 import os
 
 @login_required
@@ -99,7 +99,7 @@ def create_page(request, name, album):
                 
                 for cont in range(int(layout_)): 
                     img = Image(name="emptySpace.gif",pos=cont+1, 
-                        file= MEDIA_URL+"create_page/emptySpace.gif")
+                        file= STATIC_URL+"images/emptySpace.gif")
                     img.save()
                     page.images.add(img)
                     page.save()

@@ -1,18 +1,13 @@
 {% extends "view_template.html" %}
 
-{% block js_includes %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/create_page/create_layouts.css">
-
-{% endblock %}
-
 {% block body %}
 <div id="formLayout">
 <form action="." method="post" id="form"> {% csrf_token %}
 <table id="layoutTable">
 <tr>
-<td><img src="/static/layout1.png" /></td>
-<td><img src="/static/layout2.png" /></td>
-<td><img src="/static/layout3.png" /></td>
+<td><img src="{{STATIC_URL}}images/layout1.png" /></td>
+<td><img src="{{STATIC_URL}}images/layout2.png" /></td>
+<td><img src="{{STATIC_URL}}images/layout3.png" /></td>
 </tr>
 <tr>
 <td><input type="radio" name="layout" value="1" checked="true"></td>

@@ -1,7 +1,7 @@
 {% extends "view_template.html" %}
 {% block title %} {{ user.username }}'s pictures {% endblock %}
 {% block js_includes %}
-<script type="text/javascript" src="{{ MEDIA_URL }}images/images.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/images.js"></script>
 {% endblock %}
 {% block body  %}
 <table>
