@@ -31,10 +31,15 @@ def choose_image(request, name, album, page, nImage):
         listing = os.listdir(path)
     except OSError:
         listing = []
-    return render_to_response("space/editor/choose_image.html", RequestContext(request,{
-             'user':request.user, 'album': album_, 'page':page_, 'listing': listing, 'nImage': nImage
-    }))
-    
+
+    if request.user==usr:  
+        return render_to_response("space/editor/choose_image.html", RequestContext(request,{
+                 'user':request.user, 'album': album_, 'page':page_, 'listing': listing, 'nImage': nImage
+        }))
+    else:
+        raise Http404
+
+@login_required    
 def asign_image(request, name, album, page, nImage, name_file):
     
     try:
@@ -61,6 +66,7 @@ def asign_image(request, name, album, page, nImage, name_file):
     
     return HttpResponseRedirect("/"+ name + "/" + album + "/view/?page=" + page)
 
+@login_required
 def upload_image_flickr(request, name, album, page, nImage):
     url = request.GET.get('url')  
     filename = os.path.basename(url)

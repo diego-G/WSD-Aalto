@@ -38,23 +38,27 @@ def home(request, name):
     }))
 
 def create_album(request, name):
-    c = {}
-    c.update(csrf(request))
-    if request.method == 'POST': # If the form has been submitted...
-        usr = User.objects.get(username=name)
-        album = Album(user=usr)
-        form = AlbumForm(request.POST, instance=album) # A form bound to the POST data
-        form.save()
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # ...
-            return HttpResponseRedirect('/') # Redirect after POST
+    if request.user.username == name:   
+        c = {}
+        c.update(csrf(request))
+        if request.method == 'POST': # If the form has been submitted...
+            usr = User.objects.get(username=name)
+            album = Album(user=usr)
+            form = AlbumForm(request.POST, instance=album) # A form bound to the POST data
+            form.save()
+            if form.is_valid(): # All validation rules pass
+                # Process the data in form.cleaned_data
+                # ...
+                return HttpResponseRedirect('/') # Redirect after POST
+        else:
+            form = AlbumForm() # An unbound form
+        
+        return render_to_response('space/create_album.html', RequestContext(request,{
+            'form': form,
+        }))
     else:
-        form = AlbumForm() # An unbound form
+        raise Http404
 
-    return render_to_response('space/create_album.html', RequestContext(request,{
-        'form': form,
-    }))
 
 def delete_album(request, name, album):
 #def delete(request, name):
@@ -82,39 +86,42 @@ def show_album(request, name, album):
     )
 
 def create_page(request, name, album):
-    if request.method == 'POST': # If the form has been submitted...
-        try:
-            usr = User.objects.get(username=name)
-            rel_album = Album.objects.get(user=usr,id=album)
-            rel_page = Page.objects.filter(album=rel_album.id)
-            length = len(rel_page)
-            layout_ = request.POST.get("layout")
-            page = Page(album=rel_album,number=int(length)+1,layout=int(layout_),)
-            page.save()
-            
-            for cont in range(int(layout_)): 
-                img = Image(name="emptySpace.gif",pos=cont+1, 
-                    file= MEDIA_URL+"create_page/emptySpace.gif")
-                img.save()
-                page.images.add(img)
+    if request.user.username == name:
+        if request.method == 'POST': # If the form has been submitted...
+            try:
+                usr = User.objects.get(username=name)
+                rel_album = Album.objects.get(user=usr,id=album)
+                rel_page = Page.objects.filter(album=rel_album.id)
+                length = len(rel_page)
+                layout_ = request.POST.get("layout")
+                page = Page(album=rel_album,number=int(length)+1,layout=int(layout_),)
                 page.save()
+                
+                for cont in range(int(layout_)): 
+                    img = Image(name="emptySpace.gif",pos=cont+1, 
+                        file= MEDIA_URL+"create_page/emptySpace.gif")
+                    img.save()
+                    page.images.add(img)
+                    page.save()
+                
+            except Album.DoesNotExist:
+                raise Http404
             
-        except Album.DoesNotExist:
-            raise Http404
-        
-        form = PageForm(request.POST, instance=page) # A form bound to the POST data
-
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            form.save()
-            
-            return HttpResponseRedirect('../') # Redirect after POST
+            form = PageForm(request.POST, instance=page) # A form bound to the POST data
+    
+            if form.is_valid(): # All validation rules pass
+                # Process the data in form.cleaned_data
+                form.save()
+                
+                return HttpResponseRedirect('../') # Redirect after POST
+        else:
+            form = PageForm() # An unbound form
+    
+        return render_to_response('space/create_page.html', RequestContext(request,{
+            'form': form,
+        }))
     else:
-        form = PageForm() # An unbound form
-
-    return render_to_response('space/create_page.html', RequestContext(request,{
-        'form': form,
-    }))
+        raise Http404
 
     
 def delete_page(request, name, album, page):
@@ -162,15 +169,18 @@ def pages(request, name, album):
       
 @login_required
 def change_pass(request, name):
-    form = PasswordChangeForm(request.user)
-    if request.POST:
-            form = PasswordChangeForm(request.user,request.POST)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect('done/')
-    return render_to_response('space/change_pass_form.html', {
-            'form': form } , context_instance=RequestContext(request)
-        )
+    if request.user.username == name:
+        form = PasswordChangeForm(request.user)
+        if request.POST:
+                form = PasswordChangeForm(request.user,request.POST)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect('done/')
+        return render_to_response('space/change_pass_form.html', {
+                'form': form } , context_instance=RequestContext(request)
+            )
+    else:
+        raise Http404
   
 def change_pass_done(request, name):
     return render_to_response('space/change_pass_done.html',

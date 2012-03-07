@@ -22,6 +22,6 @@ urlpatterns = patterns('space.views',
     url(r'^images/', include('space.images.urls'), name='images'),
         
     url(r'^change_pass/$', 'change_pass', name='change_pass'),
-    url(r'^change_pass/done/$', 'change_pass_done'),  
+    url(r'^change_pass/done/$', 'change_pass_done', name='change_pass_done'),  
 )
 

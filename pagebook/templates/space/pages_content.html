@@ -11,9 +11,13 @@
 <td id="images">
  {% for img in set_images %}
 	    <div id="image{{page.layout}}{{img.pos}}">
+	    	{% if user.username == owner.username %}
 	    	<a href="{% url choose_image owner.username album.id page.number img.pos%}">
 	    		<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" />
-	    	</a>		
+	    	</a>
+	    	{% else %}
+	    	<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" />
+	    	{% endif %}		
 	    </div>
   {% endfor %}
 </td>
