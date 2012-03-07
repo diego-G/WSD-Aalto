@@ -18,7 +18,7 @@ $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?
       $("<a>").attr("href", "upload_image_flickr/?url="+item.media.m).attr("id","link"+i).appendTo("#images");
     	$("<img/>").attr("src", item.media.m).appendTo("#link"+i);
       
-      if ( i == 3 ) return false;
+      if ( i == 4 ) return false;
     });
   });
 }
