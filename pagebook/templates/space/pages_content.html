@@ -9,7 +9,7 @@
 <td id="images">
     {% if page.layout == 1 %}
     <div id="oneFirst">
-    <a href="{% url choose_image owner.username album.id page.id 1%}"><img class="img1" src="{{img1.file}}" /></a>		
+    <a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img1" src="{{img1.file}}" /></a>		
     </div>
     {% endif %}
     
