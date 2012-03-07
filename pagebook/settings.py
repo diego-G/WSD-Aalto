@@ -124,10 +124,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'access',
-    'space',
-    'space.editor',
-    'social_auth',
+    'pagebook.access',
+    'pagebook.space',
+    'pagebook.social_auth',
 )
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -209,13 +208,7 @@ LOGIN_REDIRECT_URL = '/'
 #SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/openid/'
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
-
-SOCIAL_AUTH_DEFAULT_USERNAME = 'new_social_auth_user'
-SOCIAL_AUTH_UUID_LENGTH = 16
-SOCIAL_AUTH_EXTRA_DATA = False
 SOCIAL_AUTH_EXPIRATION = 'expires'
 SOCIAL_AUTH_SESSION_EXPIRATION = False
-#SOCIAL_AUTH_CREATE_USERS = False
-
 SOCIAL_AUTH_PROCESS_EXCEPTIONS = 'social_auth.utils.process_exceptions'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG

@@ -32,6 +32,8 @@ def get_username(details, user=None, user_exists=simple_user_exists,
         username = uuid4().get_hex()
     elif details.get(USERNAME):
         username = details[USERNAME]
+    elif details.get("first_name"):
+        username = details["first_name"]
     elif setting('SOCIAL_AUTH_DEFAULT_USERNAME'):
         username = setting('SOCIAL_AUTH_DEFAULT_USERNAME')
         if callable(username):
