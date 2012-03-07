@@ -1,4 +1,3 @@
-
 $(function() {
 	$("#back").live('click', function() {
         // Take the target url from the link that was clicked

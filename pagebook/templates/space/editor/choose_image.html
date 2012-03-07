@@ -30,7 +30,7 @@ These are the images in your database.
 </table>
 {% else %}
 You don't have images in your database.<br>
-<a href="{% url space.images.views.images user.username%}">Click here to start to upload images!</a>
+<a href="{% url images user.username%}">Click here to start to upload images!</a>
 {% endif %}
 <br>
 
@@ -39,7 +39,7 @@ You don't have images in your database.<br>
 <div id="images"></div>
 <br>
 
-<a href="{% url pages user.username album.id %}?page={{page.number}}">Cancel</a></br>
+<a href="{% url pages user.username album.id%}?page={{page.number}}">Cancel</a></br>
 <br>
 <a href="../../../../">Back to album</a></br>
 {% endblock %}

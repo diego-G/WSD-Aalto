@@ -13,9 +13,11 @@ urlpatterns = patterns('space.views',
     url(r'^(?P<album>\d+)/$', 'show_album', name='show_album'),
     url(r'^(?P<album>\d+)/create_page/$', 'create_page', name='create_page'),
     url(r'^(?P<album>\d+)/delete_page/(?P<page>\d+)/$', 'delete_page', name='delete_page'),
+    url(r'^(?P<album>\d+)/(?P<page>\d+)/edit_page/', include('space.editor.urls'), name= 'edit_page'),
+    
     url(r'^(?P<album>\d+)/view/$', 'pages', name='pages'),
     url(r'^(?P<album>\d+)/(?P<page>\d+)/$', 'render_page', name='render_page'),
-    url(r'^(?P<album>\d+)/(?P<page>\d+)/edit_page/', include('space.editor.urls'), name= 'edit_page'),
+
     
     url(r'^images/', include('space.images.urls'), name='images'),
         

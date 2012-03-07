@@ -17,11 +17,11 @@
 	min-width:740px;
 	height:100%;
 }
-.img1 {
+.img11 {
 	max-width:100%;
 	max-height:500px;
 }
-.img2 {
+.img21, .img22 {
 	max-height:248px;
 	max-width:100%;
 }
@@ -29,55 +29,39 @@
 	max-height:500px;
 	max-width:368px;
 }
-.img32 {
+.img32, .img33 {
 	max-height:248px;
 	max-width:368px;
-}
-	
+}	
 #dynamicContent {
 	text-align:center;
 	min-width:100%;
 	margin:0px;
 }
 
-#oneFirst {
+#image11 {
 	max-height:100%;
 	max-width:100%;
 	border:dashed #000 1px;
 	overflow:hidden;
 }
-#twoFirst {
+#image21, #image22  {
 	width:738px;
 	height:248px;
 	border:dashed #000 1px;
 	overflow:hidden;
 }
-#twoSecond {
-	width:738px;
-	height:248px;
-	border:dashed #000 1px;
-	overflow:hidden;
-}
-#threeFirst {
+#image31 {
 	width:366px;
 	height:100%;
 	float:left;
 	border:dashed #000 1px;
 	overflow:hidden;
 }
-#threeSecond {
+#image32, #image33 {
 	width:368px;
 	height:50%;
 	float:right;
 	overflow:hidden;
 	border:dashed #000 1px;
 }
-#threeThird {
-	width:368px;
-	height:50%;
-	float:right;
-	overflow:hidden;
-	border:dashed #000 1px;
-}
-
-

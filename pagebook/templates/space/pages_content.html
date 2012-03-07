@@ -1,56 +1,33 @@
+<script type="text/javascript" src="/static/js_image.js"></script>
+
 <table id="handler">
 <tr><td id="back">
-
 {% if page_back != -1 %}
-<a href="{% url space.views.render_page owner.username album.id page_back %}">
+<a href="{% url render_page owner.username album.id page_back%}">
 <img src="/static/left.png" /></a>
 {% endif %}
 </td>
+
 <td id="images">
-    {% if page.layout == 1 %}
-    <div id="oneFirst">
-    <a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img1" src="{{img1.file}}" /></a>		
-    </div>
-    {% endif %}
-    
-    {% if page.layout == 2 %}
-    <div id="twoFirst">
-    	<a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img2" src="{{img1.file}}" /></a>
-    </div>
-    <div id="twoSecond">
-    	<a href="{% url choose_image owner.username album.id page.number 2%}"><img class="img2" src="{{img2.file}}" /></a>
-    </div>
-    {% endif %}
-    
-    {% if page.layout == 3 %}
-    <div id="threeFirst">
-    	<a href="{% url choose_image owner.username album.id page.number 1%}"><img class="img31" src="{{img1.file}}" /></a>
-    </div>
-    </div>
-    <div id="threeSecond">
-    	<a href="{% url choose_image owner.username album.id page.number 2%}"><img class="img32" src="{{img2.file}}" /></a>
-    </div>
-    </div>
-    <div id="threeThird">
-    	<a href="{% url choose_image owner.username album.id page.number 3%}"><img class="img32" src="{{img3.file}}" /></a>
-    </div>
-    </div>
-
-    {% endif %}
-
+ {% for img in set_images %}
+	    <div id="image{{page.layout}}{{img.pos}}">
+	    	<a href="{% url choose_image owner.username album.id page.number img.pos%}">
+	    		<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" />
+	    	</a>		
+	    </div>
+  {% endfor %}
 </td>
+
 <td id="next">
 {% if page_next != -1 %}
-<a href="{% url space.views.render_page owner.username album.id page_next %}">
+<a href="{% url render_page owner.username album.id page_next%}">
 <img src="/static/right.png" /></a>
 {% endif %}
-
 </td>
 </tr>
 </table>
 
-    {% if user.username == owner.username %}
-    <a href="../create_page/">Add page</a></br>
-    {% endif %}
-    <a href="../">Back to album</a></br>
-<script type="text/javascript" src="/static/js_image.js"></script>
+{% if user.username == owner.username %}
+<a href="../create_page/">Add page</a></br>
+{% endif %}
+<a href="../">Back to album</a></br>
