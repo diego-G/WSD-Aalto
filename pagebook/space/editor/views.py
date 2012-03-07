@@ -14,27 +14,6 @@ from urlparse import urlparse
 from urllib import urlretrieve
 
 @login_required
-def edit_page(request, name, album, page ):
-    try:
-        usr = User.objects.get(username=name)
-    except User.DoesNotExist:
-        raise Http404
-    try:
-        album_ = Album.objects.get(user=usr, id=album)
-    except Album.DoesNotExist:
-        raise Http404
-    page_ = Page.objects.get(album=album_, number=page)
-    set_images = page_.images.all().order_by('pos')
-    path = MEDIA_ROOT+"/images/"+usr.username
-    try:
-        listing = os.listdir(path)
-    except OSError:
-        listing = ''
-    
-    return render_to_response("space/editor/edit_page.html", RequestContext(request,{
-              'user':request.user, 'album': album_, 'page':page_, 'set_images': set_images,
-    }))
-    
 def choose_image(request, name, album, page, nImage):
     nImage = int(nImage)
     try:
@@ -80,7 +59,7 @@ def asign_image(request, name, album, page, nImage, name_file):
     page_.images.add(image)
     page_.save()
     
-    return HttpResponseRedirect("../../")
+    return HttpResponseRedirect("/"+ name + "/" + album + "/view/?page=" + page)
 
 def upload_image_flickr(request, name, album, page, nImage):
     url = request.GET.get('url')  
