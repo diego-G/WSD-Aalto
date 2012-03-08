@@ -22,5 +22,6 @@ urlpatterns = patterns('space.views',
         
     url(r'^change_pass/$', 'change_pass', name='change_pass'),
     url(r'^change_pass/done/$', 'change_pass_done', name='change_pass_done'),  
+    url(r'^lookup_users/$', 'lookup_users', name='lookup_users'),
 )
 

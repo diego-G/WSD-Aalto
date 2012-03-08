@@ -7,6 +7,7 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from models import Album, Page, Image, AlbumForm, PageForm
 from django.core.context_processors import csrf
+from django.utils import simplejson
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
@@ -218,3 +219,17 @@ def edit_album(request, name, album):
         
     else:
         raise Http404
+
+def lookup_users(request, name):
+    # Default return list
+    results = []
+    if request.method == "GET":
+        if request.GET.has_key(u'query'):
+            value = request.GET[u'query']
+            # Ignore queries shorter than length 3
+            if len(value) > 0:
+                model_results = User.objects.filter(username__icontains=value)
+                results = [ x.username for x in model_results ]
+                print results
+    json = simplejson.dumps(results)
+    return HttpResponse(json, mimetype='application/json')

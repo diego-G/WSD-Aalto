@@ -1,0 +1,13 @@
+element.style {
+    display: none;
+    left: 20px;
+    position: absolute;
+    top: 60px;
+    width: 200px;
+}
+.ac_results {
+    background-color: #AFD2FD;
+    border: 1px solid #7FB7FB;
+    overflow: hidden;
+    padding: 0;
+}

@@ -1,14 +1,23 @@
+<script type="text/javascript" >
+$(function(){
+  setAutoComplete("another_user", "results", "lookup_users/?query=");
+});
+</script>
+
 <div id="logo">
 <a href="/"><img src="{{ STATIC_URL }}images/minilogo.png"></a>
 </div>
 <div id="login">
 {% if user.is_authenticated %}
+
 <div id="search">
 <form action="{% url home_user user.username %}" method="post"> {% csrf_token %}
-<input id="search_field" type="text" name="another_user" />
+<input type="text" id="another_user" name="another_user" autocomplete="off"/>
 <input type="image" src="{{ STATIC_URL }}images/search.png" id="img_search" />
+<div class="ac_results" id="results" name="results" style="display: none; position: absolute;"></div>
 </form>
 </div>
+
 <p><a href="/"><img src="{{ STATIC_URL }}images/home.png" id="home_image" /></a>Logged in as {{ user.username }}  | <a href="/access/logout/">Logout</a></p>
 {% else %}
 <p><a href="/">Log in</a></p>
