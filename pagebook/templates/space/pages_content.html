@@ -3,7 +3,7 @@
 <table id="handler">
 <tr><td id="back">
 {% if page_back != -1 %}
-<a href="{% url render_page owner.username album.id page_back%}">
+<a href="{% url pages owner.username album.id page_back%}">
 <img src="/static/images/left.png" /></a>
 {% endif %}
 </td>
@@ -24,7 +24,7 @@
 
 <td id="next">
 {% if page_next != -1 %}
-<a href="{% url render_page owner.username album.id page_next%}">
+<a href="{% url pages owner.username album.id page_next%}">
 <img src="/static/images/right.png" /></a>
 {% endif %}
 </td>
