@@ -37,6 +37,10 @@ html,body {
 	float:right;
 	color:white;
 	padding: 0px 45px 0px 15px;
+	line-height:40px;
+}
+#login p {
+	margin:0;
 }
 #login a {
 	text-decoration:none;
@@ -56,3 +60,22 @@ html,body {
 	text-align:center;
 	color:#777;
 }
+#search {
+	position:absolute;
+	top:5px;
+	left:300px;
+}
+#search_field {
+	width:250px;
+	position:absolute;
+	top:5px;
+}
+#img_search {
+	position:absolute;
+	left:260px;
+}
+#home_image {
+	padding: 5px 10px 5px 10px;
+	vertical-align:bottom;
+}
+
