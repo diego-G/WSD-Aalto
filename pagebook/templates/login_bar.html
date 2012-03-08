@@ -1,6 +1,6 @@
 <script type="text/javascript" >
 $(function(){
-  setAutoComplete("another_user", "results", "lookup_users/?query=");
+  setAutoComplete("another_user", "results", "{% url lookup_users user.username %}?query=");
 });
 </script>
 
