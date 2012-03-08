@@ -32,7 +32,7 @@ def login_view(request):
             else:
                 return HttpResponse("not active")
         else:
-            return HttpResponse("bad password")
+            return HttpResponseRedirect("/login_error/")
     else:
         return HttpResponse("no post")
 

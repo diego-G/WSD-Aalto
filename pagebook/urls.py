@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     url(r'^$', 'pagebook.views.home', name='home'),
+    url(r'^/login_error/$', 'login_error', name='login_error'),
     url(r'^social_auth/', include('social_auth.urls')),
     url(r'^access/', include('access.urls'), name='access'),
 

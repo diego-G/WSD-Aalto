@@ -29,7 +29,7 @@ def home(request, name):
         try:
              exist = User.objects.get(username=another_user)
         except User.DoesNotExist:
-            raise Http404
+            return render_to_response("space/user_not_exist.html", RequestContext(request,{}))
         return HttpResponseRedirect("/" + another_user + "/")
     
     if request.user != usr:

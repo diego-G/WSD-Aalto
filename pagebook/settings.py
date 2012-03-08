@@ -205,7 +205,7 @@ INSTAGRAM_CLIENT_SECRET      = ''
 
 #LOGIN_URL          = '/login-form/'
 LOGIN_REDIRECT_URL = '/'
-#LOGIN_ERROR_URL    = '/login-error/'
+LOGIN_ERROR_URL    = '/login_error/'
 #SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/openid/'
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'

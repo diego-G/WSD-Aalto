@@ -15,3 +15,8 @@ def home(request):
         return render_to_response('index.html',c, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect("/" + request.user.username + "/")
+    
+def login_error(request):
+    c = {}
+    c.update(csrf(request))
+    return render_to_response('index.html',c, context_instance=RequestContext(request))
