@@ -78,4 +78,9 @@ html,body {
 	padding: 5px 10px 5px 10px;
 	vertical-align:bottom;
 }
-
+#formLayout {
+    text-align: center;
+}
+#layoutTable {
+    margin: auto;
+}

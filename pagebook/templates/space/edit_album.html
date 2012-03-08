@@ -1,0 +1,10 @@
+<form action="{% url edit_album user.username album.id %}" method='post' name="myform" id="myform">{% csrf_token %}
+<label for="id_name">New name:</label>
+<input type="text" id="id_name" name="name"/>
+<input type="submit" value="Save!" id="submit_button">
+
+<script type="text/javascript">
+	$("#myform").ajaxForm(function() { 
+            location.reload();
+        });
+</script>

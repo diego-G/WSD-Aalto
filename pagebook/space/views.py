@@ -82,7 +82,7 @@ def show_album(request, name, album):
         raise Http404
     pages = Page.objects.filter(album=album_)
     return render_to_response("space/album.html",
-            RequestContext(request,{'user':request.user, 'owner':usr, 'album':pages})
+            RequestContext(request,{'user':request.user, 'owner':usr, 'pages':pages, 'album':album_})
     )
 
 def create_page(request, name, album):
@@ -196,3 +196,25 @@ def change_pass_done(request, name):
 def render_javascript(request, name):
     return render_to_response("js/js_page.js", mimetype="text/javascript")
 
+@login_required
+def edit_album(request, name, album):
+    if request.user.username == name:   
+        c = {}
+        c.update(csrf(request))
+        usr = User.objects.get(username=name)
+        try:
+            album_ = Album.objects.get(user=usr, id=album)
+        except Album.DoesNotExist:
+            album_ = Album()
+        if request.method == 'POST': # If the form has been submitted...
+            new_name = request.POST.get('name')
+            album_.name = new_name
+            album_.save()
+            return HttpResponse('<button type="button" id="edit_button">Change Album\'s name</button>')
+            
+        return render_to_response('space/edit_album.html', RequestContext(request,{
+                'user':request.user, 'owner':usr, 'album':album_
+                    }))
+        
+    else:
+        raise Http404
