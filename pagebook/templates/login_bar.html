@@ -1,15 +1,15 @@
 <div id="logo">
-<a href="/"><img src="/static/images/minilogo.png"></a>
+<a href="/"><img src="{{ STATIC_URL }}images/minilogo.png"></a>
 </div>
 <div id="login">
 {% if user.is_authenticated %}
 <div id="search">
 <form action="{% url home_user user.username %}" method="post"> {% csrf_token %}
 <input id="search_field" type="text" name="another_user" />
-<input type="image" src="/static/images/search.png" id="img_search" />
+<input type="image" src="{{ STATIC_URL }}images/search.png" id="img_search" />
 </form>
 </div>
-<p><a href="/"><img src="/static/images/home.png" id="home_image" /></a>Logged in as {{ user.username }}  | <a href="/access/logout/">Logout</a></p>
+<p><a href="/"><img src="{{ STATIC_URL }}images/home.png" id="home_image" /></a>Logged in as {{ user.username }}  | <a href="/access/logout/">Logout</a></p>
 {% else %}
 <p><a href="/">Log in</a></p>
 {% endif %}

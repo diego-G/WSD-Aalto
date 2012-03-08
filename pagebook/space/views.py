@@ -33,7 +33,7 @@ def home(request, name):
     
     if request.user != usr:
          albums = Album.objects.filter(user=usr, private=False)
-    return render_to_response("space/collections.html", RequestContext(request,{
+    return render_to_response("space/collections.html", c, RequestContext(request,{
         'user':request.user, 'owner':usr, 'albums':albums
     }))
 
@@ -139,10 +139,9 @@ def delete_page(request, name, album, page):
     return HttpResponseRedirect("../../")
 
 @login_required
-def pages(request, name, album, page=None):
+def pages(request, name, album):
     if request.method == 'GET':
-        if request.is_ajax():
-            page = request.GET.get('page')
+        page = request.GET.get('page')
     else:
         page = 1;
     try:
@@ -163,8 +162,9 @@ def pages(request, name, album, page=None):
     except Page.DoesNotExist:
         page_next = -1
     imgs = page_.images.all().order_by('pos')
+    print request.is_ajax()
     if request.is_ajax():
-        return render_to_response("space/content_pages.html", RequestContext(request,{
+        return render_to_response("space/pages_content.html", RequestContext(request,{
                                 'user':request.user, 'owner':usr, 'album': album_, 'page':page_, 'page_back':page_back, 
                                 'page_next':page_next, 'set_images': imgs
         }))

@@ -1,10 +1,10 @@
-<script type="text/javascript" src="/static/js/js_image.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/js_image.js"></script>
 
 <table id="handler">
 <tr><td id="back">
 {% if page_back != -1 %}
-<a href="{% url pages owner.username album.id page_back%}">
-<img src="/static/images/left.png" /></a>
+<a href="{% url pages owner.username album.id%}?page={{page_back}}">
+<img src="{{ STATIC_URL }}images/left.png" /></a>
 {% endif %}
 </td>
 
@@ -24,8 +24,8 @@
 
 <td id="next">
 {% if page_next != -1 %}
-<a href="{% url pages owner.username album.id page_next%}">
-<img src="/static/images/right.png" /></a>
+<a href="{% url pages owner.username album.id%}?page={{page_next}}">
+<img src="{{ STATIC_URL }}images/right.png" /></a>
 {% endif %}
 </td>
 </tr>

@@ -42,26 +42,26 @@
 #image11 {
 	max-height:100%;
 	max-width:100%;
-	border:dashed #000 1px;
 	overflow:hidden;
+	vertical-align:middle;
 }
 #image21, #image22  {
 	width:738px;
 	height:248px;
-	border:dashed #000 1px;
+	vertical-align:middle;
 	overflow:hidden;
 }
 #image31 {
 	width:366px;
 	height:100%;
 	float:left;
-	border:dashed #000 1px;
 	overflow:hidden;
+	vertical-align:middle;
 }
 #image32, #image33 {
 	width:368px;
 	height:50%;
 	float:right;
 	overflow:hidden;
-	border:dashed #000 1px;
+	vertical-align:middle;
 }

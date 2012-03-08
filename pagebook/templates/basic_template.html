@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>{% block title %}{% endblock %}</title>
-<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
 </head>
 <body>
 <div class="wrapper">
@@ -26,11 +26,11 @@
 <div class="socialLogin">
     <p>Don't you have an account? <a href="/access/register/">Sign up here!</a></p>
     <p>Do you already have an account with Twitter?</p>
-    <p><a href="/social_auth/login/twitter"><img src="/static/images/dark.png"></a></p>
+    <p><a href="/social_auth/login/twitter"><img src="{{ STATIC_URL }}images/dark.png"></a></p>
     <p>You can also log in with Facebook</p>
-    <p><a href="/social_auth/login/facebook"><img src="/static/images/facebook_login_button.png"></a></p>
+    <p><a href="/social_auth/login/facebook"><img src="{{ STATIC_URL }}images/facebook_login_button.png"></a></p>
     <p>Or with your Google account</p>
-    <p><a href="/social_auth/login/google"><img src="/static/images/google.png"></a></p>
+    <p><a href="/social_auth/login/google"><img src="{{ STATIC_URL }}images/google.png"></a></p>
     
     </div>
     </div>
