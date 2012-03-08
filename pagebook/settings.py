@@ -84,7 +84,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -213,6 +213,3 @@ SOCIAL_AUTH_EXPIRATION = 'expires'
 SOCIAL_AUTH_SESSION_EXPIRATION = False
 SOCIAL_AUTH_PROCESS_EXCEPTIONS = 'social_auth.utils.process_exceptions'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG
-
-
-DEFAULT_FILE_STORAGE = os.path.join(os.path.dirname(__file__), "static")
