@@ -1,7 +1,18 @@
-{% extends "view_template.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css">
+<title>{% block title %}Create an account{% endblock %}</title>
+</head>
 
-{% block title %}Create an account{% endblock %}
+<body>
 
+<div class="wrapper">
+<div class="up">
+<div id="logo">
+<a href="/"><img src="{{ STATIC_URL }}images/logo.png"></a> 
+<div class="registration">
 {% block body %}
   <h1>Create an account</h1>
    <form action="" method="post">
@@ -14,3 +25,12 @@
 	  </ul>
   </form>
 {% endblock %}
+</div>
+</div>
+</div>
+</div>
+
+<div class='footer'>WSD - Web Software Development Authors: Diego Garcia - Xavi Magrinya</div>
+
+</body>
+</html>
