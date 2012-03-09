@@ -150,14 +150,7 @@ LOGGING = {
             'propagate': True,
         },
     }
-}
-
-FILE_UPLOAD_HANDLERS = (
-        "django.core.files.uploadhandler.MemoryFileUploadHandler",
-        "django.core.files.uploadhandler.TemporaryFileUploadHandler",
- )
-
-LOGIN_URL =  '/'       
+}    
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
@@ -165,17 +158,6 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleOAuthBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.google.GoogleBackend',
-    'social_auth.backends.yahoo.YahooBackend',
-    'social_auth.backends.browserid.BrowserIDBackend',
-    'social_auth.backends.contrib.linkedin.LinkedinBackend',
-    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
-    'social_auth.backends.contrib.orkut.OrkutBackend',
-    'social_auth.backends.contrib.foursquare.FoursquareBackend',
-    'social_auth.backends.contrib.github.GithubBackend',
-    'social_auth.backends.contrib.dropbox.DropboxBackend',
-    'social_auth.backends.contrib.flickr.FlickrBackend',
-    'social_auth.backends.contrib.instagram.InstagramBackend',
-    'social_auth.backends.OpenIDBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -183,30 +165,13 @@ TWITTER_CONSUMER_KEY         = 'l1sWTwCXMB4QsMd5oCXWA'
 TWITTER_CONSUMER_SECRET      = 'l0KF90MbUtCDRUicKslpLv6Cgl6YntO1JaKVEtxQ'
 FACEBOOK_APP_ID              = '252468388172907'
 FACEBOOK_API_SECRET          = '0e7ff493b23081db14919e7db5675640'
-LINKEDIN_CONSUMER_KEY        = ''
-LINKEDIN_CONSUMER_SECRET     = ''
-ORKUT_CONSUMER_KEY           = ''
-ORKUT_CONSUMER_SECRET        = ''
 GOOGLE_CONSUMER_KEY          = 'anonymous'
 GOOGLE_CONSUMER_SECRET       = 'anonymous'
 GOOGLE_DISPLAY_NAME          = 'Social Auth'
-GOOGLE_OAUTH2_CLIENT_ID      = ''
-GOOGLE_OAUTH2_CLIENT_SECRET  = ''
-FOURSQUARE_CONSUMER_KEY      = ''
-FOURSQUARE_CONSUMER_SECRET   = ''
-GITHUB_APP_ID                = ''
-GITHUB_API_SECRET            = ''
-DROPBOX_APP_ID               = ''
-DROPBOX_API_SECRET           = ''
-FLICKR_APP_ID                = ''
-FLICKR_API_SECRET            = ''
-INSTAGRAM_CLIENT_ID          = ''
-INSTAGRAM_CLIENT_SECRET      = ''
 
-#LOGIN_URL          = '/login-form/'
+LOGIN_URL =  '/'   
 LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL    = '/login_error/'
-#SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/openid/'
 SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
 SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
 SOCIAL_AUTH_EXPIRATION = 'expires'

@@ -68,8 +68,11 @@ def asign_image(request, name, album, page, nImage, name_file):
 
 @login_required
 def upload_image_flickr(request, name, album, page, nImage):
-    url = request.GET.get('url')  
+    url = request.GET.get('url')
     filename = os.path.basename(url)
-    urlretrieve(url, MEDIA_ROOT+"/images/"+name+"/"+filename)
+    dir = MEDIA_ROOT+"/images/"+name+"/"+filename
+    
+    urlretrieve(url, dir) 
+    os.chmod(dir, 0644)
     
     return HttpResponseRedirect("../../../asign_image/"+nImage+"/"+filename)    

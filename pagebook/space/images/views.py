@@ -51,6 +51,8 @@ def save_file(file, user, path=''):
         fd.write(chunk)
     fd.close()
     
+    os.chmod(MEDIA_ROOT+"/images/"+user.username+"/"+filename, 0644)
+    
 def delete_image(request, name, file):
     os.remove(MEDIA_ROOT+"/images/"+name+"/"+file)
     return HttpResponseRedirect("../")
