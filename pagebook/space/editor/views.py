@@ -15,6 +15,9 @@ from urllib import urlretrieve
 
 @login_required
 def choose_image(request, name, album, page, nImage):
+    """
+    The images of the database are presented to assign one of them to a page.
+    """ 
     nImage = int(nImage)
     try:
         usr = User.objects.get(username=name)
@@ -41,7 +44,10 @@ def choose_image(request, name, album, page, nImage):
 
 @login_required    
 def asign_image(request, name, album, page, nImage, name_file):
-    
+    """
+    The chosen image is attach to the corresponding page.
+    It returns to the page-show.
+    """     
     try:
         usr = User.objects.get(username=name)
     except User.DoesNotExist:
@@ -68,6 +74,9 @@ def asign_image(request, name, album, page, nImage, name_file):
 
 @login_required
 def upload_image_flickr(request, name, album, page, nImage):
+    """
+    It gives to the user the chance of choosing an image of any topic.
+    """  
     url = request.GET.get('url')
     filename = os.path.basename(url)
     dir = MEDIA_ROOT+"/images/"+name+"/"+filename

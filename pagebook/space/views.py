@@ -16,6 +16,11 @@ import os
 
 @login_required
 def home(request, name):
+    """
+    It shows the albums collection of the authenticated user.
+    Also redirect to another user space through the finder.
+    If the user doesn't exist in the database, It shows the errors and exceptions properly .
+    """ 
     c = {}
     c.update(csrf(request))
     try:
@@ -39,6 +44,9 @@ def home(request, name):
     }))
 
 def create_album(request, name):
+    """
+    The creation of new album through a form according to models.py
+    """     
     if request.user.username == name:   
         c = {}
         c.update(csrf(request))
@@ -62,17 +70,19 @@ def create_album(request, name):
 
 
 def delete_album(request, name, album):
-#def delete(request, name):
-    #faltan los try
-
+    """
+    Deletion of the required album
+    """    
     usr = User.objects.get(username=request.user.username)
-# Album.objects.get(user=usr, name=album).delete()
     Album.objects.filter(user=usr, id=album).delete()
     return HttpResponseRedirect("/")
 
 @login_required
 def show_album(request, name, album):
-    print request.user.username
+    """
+    Showing the pages of the required album.
+    It finds the album in the database throwing the necessary exceptions.
+    """   
     try:
         usr = User.objects.get(username=name)
     except User.DoesNotExist:
@@ -87,6 +97,10 @@ def show_album(request, name, album):
     )
 
 def create_page(request, name, album):
+    """
+    The creation of new page of an album. Layout of the page is chosen. 
+    It attach the emptySpace image to each gap of the page, the number of times depending of the layout.
+    """      
     if request.user.username == name:
         if request.method == 'POST': # If the form has been submitted...
             try:
@@ -126,9 +140,10 @@ def create_page(request, name, album):
 
     
 def delete_page(request, name, album, page):
-    # faltan try
+    """
+    It deletes the required page and redirect to the adequate view.
+    """
     usr = User.objects.get(username=request.user.username)
-# Album.objects.get(user=usr, name=album).delete()
     album_ = Album.objects.filter(user=usr, id=album)
     page = Page.objects.get(album=album_, id=page)
     num_pag = page.number
@@ -141,6 +156,10 @@ def delete_page(request, name, album, page):
 
 @login_required
 def pages(request, name, album):
+    """
+    This view shows the required page. 
+    Here is where is captured the Ajax request to display the next or previous page of the album.
+    """
     if request.method == 'GET':
         page = request.GET.get('page')
     else:
@@ -177,6 +196,9 @@ def pages(request, name, album):
       
 @login_required
 def change_pass(request, name):
+    """
+    This view permits the user to change its password.
+    """
     if request.user.username == name:
         form = PasswordChangeForm(request.user)
         if request.POST:
@@ -191,6 +213,9 @@ def change_pass(request, name):
         raise Http404
   
 def change_pass_done(request, name):
+    """
+    Display if the password has changed successfully.
+    """
     return render_to_response('space/change_pass_done.html',
              context_instance=RequestContext(request))
     
@@ -199,6 +224,10 @@ def render_javascript(request, name):
 
 @login_required
 def edit_album(request, name, album):
+    """
+    Let the user changes the name of an existing album.
+    It's performed by using a javascript function and jquery library.
+    """
     if request.user.username == name:   
         c = {}
         c.update(csrf(request))
@@ -221,6 +250,11 @@ def edit_album(request, name, album):
         raise Http404
 
 def lookup_users(request, name):
+    """
+    This view is used to auto-complete the most relevant results in the finder.
+    Look for the names in the database and display them in the page below the finder.
+    It's performed by using a javascript function and jquery library.
+    """
     # Default return list
     results = []
     if request.method == "GET":

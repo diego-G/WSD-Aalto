@@ -8,7 +8,9 @@ from django.http import Http404
 from django.core.context_processors import csrf
 
 def home(request):
-    
+    """
+    Displays the front page with the log, social-log and register options
+    """ 
     c = {}
     c.update(csrf(request))
     if not request.user.is_authenticated():
@@ -17,6 +19,9 @@ def home(request):
         return HttpResponseRedirect("/" + request.user.username + "/")
     
 def login_error(request):
+    """
+    If there is an user log error, this view redirect to the initial page
+    """ 
     c = {}
     c.update(csrf(request))
     return render_to_response('index.html',c, context_instance=RequestContext(request))

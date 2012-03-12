@@ -19,7 +19,9 @@ FACEBOOK_API_KEY = getattr(settings, 'FACEBOOK_API_KEY', '')
 FACEBOOK_SECRET_KEY = getattr(settings, 'FACEBOOK_SECRET_KEY', '')
 
 def login_view(request):
-    
+    """
+    After receive the login and password, It is checked the existence of the user and the correct pass
+    """ 
     username = password = ''
     if request.POST:
         username = request.POST.get('username')
@@ -37,10 +39,17 @@ def login_view(request):
         return HttpResponse("no post")
 
 def logout_view(request):
+    """
+    Redirecting to the fron-page when logout from anywhere
+    """ 
     logout(request)
     return HttpResponseRedirect("/")
 
 def register(request):
+    """
+    Showing the registration form and creating the new user.
+    It creates a folder for each new user to hold their images.
+    """ 
     form = UserCreationForm()
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

@@ -18,7 +18,8 @@
 <tr><td>Public</td></tr>
 {% endif %}
 {% if user.username == owner.username %}
-<tr><td><a href="{% url delete_album owner.username album.id %}">Delete album</a></td></tr>
+<tr><td><a href="{% url delete_album owner.username album.id %}">
+	<img src="{{ STATIC_URL }}images/delete.jpg" /></a></td></tr>
 {% endif %}
 </table>
 </td>

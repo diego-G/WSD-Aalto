@@ -21,7 +21,7 @@
 <tr><td>
 <a href="view/?page={{ page.number }}">Page {{page.number}}</></td></tr>
 {% if user.username == owner.username %}
-<tr><td><a href="delete_page/{{ page.id }}/">Delete page</a></td></tr>
+<tr><td><a href="delete_page/{{ page.id }}/"><img src="{{ STATIC_URL }}images/delete.jpg"/></a></td></tr>
 {% else %}
 <tr><td></td></tr>
 {% endif %}

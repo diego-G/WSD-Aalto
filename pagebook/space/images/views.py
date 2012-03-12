@@ -15,6 +15,10 @@ import os
 
 @login_required
 def images(request, name):
+    """
+    It shows the images in the database of the user.
+    Also, It allows to the user to upload images from its computer and deletes the existing.
+    """ 
     template = "space/images/images.html"
     
     c = {}
@@ -45,6 +49,9 @@ def images(request, name):
             raise Http404
 
 def save_file(file, user, path=''):
+    """
+    Auxiliary method to create a file of the image that the user wants to upload.
+    """ 
     filename = file._get_name()
     fd = open('%s/%s' % (MEDIA_ROOT+"/images/"+user.username, str(path) + str(filename)), 'wb')
     for chunk in file.chunks():
@@ -54,5 +61,8 @@ def save_file(file, user, path=''):
     os.chmod(MEDIA_ROOT+"/images/"+user.username+"/"+filename, 0644)
     
 def delete_image(request, name, file):
+    """
+    Auxiliary method to delete an image.
+    """ 
     os.remove(MEDIA_ROOT+"/images/"+name+"/"+file)
     return HttpResponseRedirect("../")
