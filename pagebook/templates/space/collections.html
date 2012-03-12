@@ -12,7 +12,11 @@
 <td>
 <table>
 <tr><td><a href="{% url show_album owner.username album.id %}">{{ album.name }}</a></td></tr>
-<tr><td>{{ album.private }}</td></tr>
+{% if album.private %} 
+<tr><td>Private</td></tr>
+{% else %}
+<tr><td>Public</td></tr>
+{% endif %}
 {% if user.username == owner.username %}
 <tr><td><a href="{% url delete_album owner.username album.id %}">Delete album</a></td></tr>
 {% endif %}

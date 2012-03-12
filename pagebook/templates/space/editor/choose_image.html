@@ -3,6 +3,7 @@
 
 {% block js_includes %}
 <script type="text/javascript" src="{{STATIC_URL}}js/flickr.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/images.css">
 {% endblock %}
 
 {% block body  %}
@@ -15,19 +16,15 @@ You have to click in the image that you want.
 
 {% if listing %}
 These are the images in your database.
-{% for file in listing %}
-<td>
-<table>
-<tr><td> 
-<a href="../../asign_image/{{nImage}}/{{file}}">
- <img src="{{ MEDIA_URL }}images/{{user.username}}/{{file}}"width="150" height="110"> 
-</a>
-</td></tr>
-</table>
-</td>
-{% endfor %}
-</tr>
-</table>
+<div id="gallery">
+    <ul>
+    	{% for file in listing %}
+        <li> <a href="../../asign_image/{{nImage}}/{{file}}">
+        <img src="{{ MEDIA_URL }}images/{{user.username}}/{{file}}" class="mini" width="150" height="110"></a>
+        </li>
+    	{% endfor %}
+    </ul>
+</div>
 {% else %}
 You don't have images in your database.<br>
 <a href="{% url images user.username%}">Click here to start to upload images!</a>
