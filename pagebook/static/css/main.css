@@ -1,84 +1,68 @@
 @charset "UTF-8";
-/* CSS Document */
-
-
-html,body {
-	margin:0;
-	height:100%;
-	font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+html, body {
+margin : 0;
+height : 100%;
+font-family : "lucida grande", tahoma, verdana, arial, sans-serif;
 }
-
 .up {
-	position:absolute;
-	top:0;
-	right:1;
-	left:0;
-	background-color:#133783;
-	width:100%;
-	height: 120px;
-	
-	
-
+position : absolute;
+top : 0;
+left : 0;
+background-color : #133783;
+width : 100%;
+height : 120px;
 }
 .wrapper {
-	min-height: 100%;
-	height:auto;
-	height: 100%;
-	margin: 0 auto -30px;
+min-height : 100%;
+height : auto;
+height : 100%;
+margin : 0 auto -30px;
 }
-
 #login {
-	float:right;
-	color:white;
-	padding: 20px 45px 0px 15px;
+float : right;
+color : white;
+padding : 20px 45px 0 15px;
 }
 #logo {
-	float:left;
-	padding-left:40px;
-	padding-top:20px;
-	
+float : left;
+padding-left : 40px;
+padding-top : 20px;
 }
 #loginTable td {
-	padding-top:10px;
+padding-top : 10px;
 }
 #loginTable a {
-	text-decoration:none;
-	color:#FC6;
+text-decoration : none;
+color : #fc6;
 }
 .content {
-	top:120px;
-	float:none;
-	position:relative;
-	text-align:center;
+top : 120px;
+float : none;
+position : relative;
+text-align : center;
 }
 .intro {
-	width:600px;
-	float:left;
-	text-align:left;
-	padding: 20px 45px 0px 15px;
-	
+width : 600px;
+float : left;
+text-align : left;
+padding : 20px 45px 0 15px;
 }
 .contener {
-	text-align:center;
-	max-width:1150px;
-	margin:auto;
+text-align : center;
+max-width : 1150px;
+margin : auto;
 }
-
 .footer {
-	background-color:#FFF;
-	text-align:center;
-	height:30px;
-	font-size:12px;
-	text-align:center;
-	color:#777;
+background-color : #fff;
+text-align : center;
+height : 30px;
+font-size : 12px;
+text-align : center;
+color : #777;
 }
 .socialLogin {
-	float:right;
-	background-color:#D9DCFF;
-	padding:20px 20px 20px 20px;
-	margin:20px 20px 20px 20px;
-	
+float : right;
+background-color : #d9dcff;
+padding : 20px 20px 20px 20px;
+margin : 20px 20px 20px 20px;
 }
-
-
-

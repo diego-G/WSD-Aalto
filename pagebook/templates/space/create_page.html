@@ -5,9 +5,9 @@
 <form action="." method="post" id="form"> {% csrf_token %}
 <table id="layoutTable">
 <tr>
-<td><img src="{{STATIC_URL}}images/layout1.png" /></td>
-<td><img src="{{STATIC_URL}}images/layout2.png" /></td>
-<td><img src="{{STATIC_URL}}images/layout3.png" /></td>
+<td><img src="{{STATIC_URL}}images/layout1.png" alt="layout1"/></td>
+<td><img src="{{STATIC_URL}}images/layout2.png" alt="layout2"/></td>
+<td><img src="{{STATIC_URL}}images/layout3.png" alt="layout3"/></td>
 </tr>
 <tr>
 <td><input type="radio" name="layout" value="1" checked="true"></td>
@@ -20,6 +20,6 @@
 </div>
 
 
-<a href="../">Back</a></br>
+<a href="../">Back</a><br/>
 
 {% endblock %}

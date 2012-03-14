@@ -1,67 +1,64 @@
-@CHARSET "UTF-8";
-
 #handler {
-	text-align:center;
-	width:auto;
-	max-width:820px;
-	height:500px;
-	min-height:500px;
-	max-height:500px;
-	margin:auto;
-	padding: 10px 0px 0px 0px;
+text-align : center;
+width : auto;
+max-width : 820px;
+height : 500px;
+min-height : 500px;
+max-height : 500px;
+margin : auto;
+padding : 10px 0 0 0;
 }
 #next, #back {
-	min-width:60px;
+min-width : 60px;
 }
 #images {
-	min-width:740px;
-	height:100%;
+min-width : 740px;
+height : 100%;
 }
 .img11 {
-	max-width:100%;
-	max-height:500px;
+max-width : 100%;
+max-height : 500px;
 }
 .img21, .img22 {
-	max-height:248px;
-	max-width:100%;
+max-height : 248px;
+max-width : 100%;
 }
 .img31 {
-	max-height:500px;
-	max-width:368px;
+max-height : 500px;
+max-width : 368px;
 }
 .img32, .img33 {
-	max-height:248px;
-	max-width:368px;
-}	
+max-height : 248px;
+max-width : 368px;
+}
 #dynamicContent {
-	text-align:center;
-	min-width:100%;
-	margin:0px;
+text-align : center;
+min-width : 100%;
+margin : 0;
 }
-
 #image11 {
-	max-height:100%;
-	max-width:100%;
-	overflow:hidden;
-	vertical-align:middle;
+max-height : 100%;
+max-width : 100%;
+overflow : hidden;
+vertical-align : middle;
 }
-#image21, #image22  {
-	width:738px;
-	height:248px;
-	vertical-align:middle;
-	overflow:hidden;
+#image21, #image22 {
+width : 738px;
+height : 248px;
+vertical-align : middle;
+overflow : hidden;
 }
 #image31 {
-	width:366px;
-	height:100%;
-	float:left;
-	overflow:hidden;
-	vertical-align:middle;
+width : 366px;
+height : 100%;
+float : left;
+overflow : hidden;
+vertical-align : middle;
 }
 #image32, #image33 {
-	width:368px;
-	height:50%;
-	float:right;
-	overflow:hidden;
-	vertical-align:middle;
+width : 368px;
+height : 50%;
+float : right;
+overflow : hidden;
+vertical-align : middle;
 }

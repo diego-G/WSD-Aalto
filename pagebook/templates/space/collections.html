@@ -6,10 +6,11 @@
 {% if user.username != owner.username %}
 <h1>"{{owner.username}}" albums</h1>
 {% endif %}
-<table>
-<tr>
+
+<div id="tablas">
+
 {% for album in albums %}
-<td>
+<div id="section{{album.id}}">
 <table>
 <tr><td><a href="{% url show_album owner.username album.id %}">{{ album.name }}</a></td></tr>
 {% if album.private %} 
@@ -19,22 +20,23 @@
 {% endif %}
 {% if user.username == owner.username %}
 <tr><td><a href="{% url delete_album owner.username album.id %}">
-	<img src="{{ STATIC_URL }}images/delete.jpg" /></a></td></tr>
+	<img src="{{STATIC_URL}}images/delete.jpg" alt="delete"/></a></td></tr>
 {% endif %}
 </table>
-</td>
+</div>
 {% empty %}
 {% if user.username == owner.username %}
-No albums yet! Create a new one!
+No albums yet! Create a new one!<br/>
 {% else %}
-The user has not any album that you are able to see.
+The user has not any album that you are able to see.<br/>
 {% endif %}
 {% endfor %}
-</tr>
-</table>
+</div>
+<br/>
+
 {% if user.username == owner.username %}
-<a href="create_album/">Create new album!</a></br>
-<a href="images/">IMAGES</a><br>
+<a href="create_album/"> Create new album!</a><br/>
+<a href="images/"> IMAGES</a><br/>
+<a href="change_pass/">Do you want to change your password?</a><br/>
 {% endif %} 
-<a href="change_pass/">Do you want to change your password?</a></br>
 {% endblock %}

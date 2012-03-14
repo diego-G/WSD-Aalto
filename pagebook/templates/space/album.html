@@ -1,8 +1,8 @@
 {% extends "view_template.html" %}
-{% block title %} {{ album.name }} - {{ owner.username }}'s Album {% endblock %}
+{% block title %} {{album.name}} - {{owner.username}}'s Album {% endblock %}
 {% block js_includes %}
-<script src="{{ STATIC_URL }}js/jquery-form.js" type="text/javascript"></script>
-<script src="{{ STATIC_URL }}js/edit_album.js" type="text/javascript"></script>{% endblock %}
+<script src="{{STATIC_URL}}js/jquery-form.js" type="text/javascript"></script>
+<script src="{{STATIC_URL}}js/edit_album.js" type="text/javascript"></script>{% endblock %}
 {% block body %}
 
 <div id="fb-root"></div>
@@ -13,32 +13,31 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=252468388172907";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<table>
-<tr>
+
+<div id="tablas">
 {% for page in pages %}
-<td>
+<div id="section{{page.id}}">
 <table>
-<tr><td>
-<a href="view/?page={{ page.number }}">Page {{page.number}}</></td></tr>
+<tr><td><a href="view/?page={{page.number}}">Page {{page.number}}</a></td></tr>
 {% if user.username == owner.username %}
-<tr><td><a href="delete_page/{{ page.id }}/"><img src="{{ STATIC_URL }}images/delete.jpg"/></a></td></tr>
+<tr><td><a href="delete_page/{{page.id}}/"><img src="{{STATIC_URL}}images/delete.jpg" alt="delete"/></a></td></tr>
 {% else %}
 <tr><td></td></tr>
 {% endif %}
 </table>
-</td>
+</div>
 {% empty %}
 {% if user.username == owner.username %}
-No pages yet! Create a new one!
+No pages yet! Create a new one!<br/>
 {% else %}
-No pages in this album.
+No pages in this album.<br/>
 {% endif %}
 {% endfor %}
-</tr>
-</table>
-</ br>
+</div>
+<br/>
+
 {% if user.username == owner.username %}
-<a href="create_page/">Add page</a></br>
+<a href="create_page/">Add page</a><br/>
 {% endif %}
 <div id="edit_album"><button type="button" id="edit_button">Change Album's name</button>
 </div>
@@ -67,9 +66,8 @@ No pages in this album.
 <div class="fb-like" data-send="true" data-width="450" data-show-faces="false" data-font="verdana"></div>
 
 {% if user.username != owner.username %}
-<a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a></br>
+<a href="{% url space.views.home owner.username %}">Home of {{ owner.username }}</a><br/>
 {% else %}
-<tr><td></td></tr>
 {% endif %}
 
 {% endblock %}

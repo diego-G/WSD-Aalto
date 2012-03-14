@@ -1,19 +1,17 @@
 {% extends "view_template.html" %}
 {% block title %} {{ user.username }}'s pictures {% endblock %}
 {% block js_includes %}
-<script type="text/javascript" src="/static/js/images.js"></script>
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/images.css">
+<script type="text/javascript" src="{{STATIC_URL}}js/images.js"></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/images.css">
 {% endblock %}
 {% block body  %}
 
-<div id="gallery" style="position: relative; left: 0; top: 0;">
+<div id="gallery" >
     <ul>
     	{% for file in listing %}
         <li>
-        <img src="{{ MEDIA_URL }}images/{{user.username}}/{{file}}" class="top" width="100" height="100" 
-			style="position: relative; top: 0; left: 0;" />
-		<a href="delete_image/{{file}}"><img src="{{ STATIC_URL }}images/delete.jpg" class="bottom"
-			style="position: relative; top: 30; left: 70;" /></a> 
+        <img src="{{MEDIA_URL}}images/{{user.username}}/{{file}}" class="top" width="100" height="100" />
+		<a href="delete_image/{{file}}"><img src="{{STATIC_URL}}images/delete.jpg" class="bottom" alt="delete"/></a> 
         </li>
     	{% endfor %}
     </ul>
@@ -21,13 +19,12 @@
 
 <div id="uploader">
 <h1>Upload more images:</h1>
-<form name="myForm" enctype="multipart/form-data" action="" onsubmit="return validateForm()" method="post">{% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
+<form name="myForm" enctype="multipart/form-data" action="." onsubmit="return validateForm()" method="post">{% csrf_token %}
+
+        {{form.as_p}}
+
     <input type="submit" value="Upload image">
 </form>
-</head>
 </div>
 
 

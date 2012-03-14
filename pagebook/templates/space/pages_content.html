@@ -1,10 +1,10 @@
-<script type="text/javascript" src="{{ STATIC_URL }}js/js_image.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/js_image.js"></script>
 
 <table id="handler">
 <tr><td id="back">
 {% if page_back != -1 %}
 <a href="{% url pages owner.username album.id%}?page={{page_back}}">
-<img src="{{ STATIC_URL }}images/left.png" /></a>
+<img src="{{STATIC_URL}}images/left.png" alt="left"/></a>
 {% endif %}
 </td>
 
@@ -13,10 +13,10 @@
 	    <div id="image{{page.layout}}{{img.pos}}">
 	    	{% if user.username == owner.username %}
 	    	<a href="{% url choose_image owner.username album.id page.number img.pos%}">
-	    		<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" />
+	    		<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" alt="images"/>
 	    	</a>
 	    	{% else %}
-	    	<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" />
+	    	<img class="img{{page.layout}}{{img.pos}}" src="{{img.file}}" alt="images"/>
 	    	{% endif %}		
 	    </div>
   {% endfor %}
@@ -25,13 +25,13 @@
 <td id="next">
 {% if page_next != -1 %}
 <a href="{% url pages owner.username album.id%}?page={{page_next}}">
-<img src="{{ STATIC_URL }}images/right.png" /></a>
+<img src="{{STATIC_URL}}images/right.png" alt="right"/></a>
 {% endif %}
 </td>
 </tr>
 </table>
 
 {% if user.username == owner.username %}
-<a href="../create_page/">Add page</a></br>
+<a href="../create_page/">Add page</a><br/>
 {% endif %}
-<a href="../">Back to album</a></br>
+<a href="../">Back to album</a><br/>

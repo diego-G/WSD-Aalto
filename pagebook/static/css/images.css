@@ -1,12 +1,7 @@
-#gallery ul, #uploader{
+#gallery ul{
     /* This position the ul content in the middle of the gallery*/
     margin-left:-30px;
 }
-#uploader{
-    /* This position the ul content in the middle of the gallery*/
-    margin-left:1100px; 
-}
-
 #gallery ul li {
     /* In order to create the proper effect with hover we should use display inline-table
         This will display the big picture right next to its thumbnail
