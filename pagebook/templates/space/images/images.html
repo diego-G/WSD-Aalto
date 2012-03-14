@@ -10,7 +10,7 @@
     <ul>
     	{% for file in listing %}
         <li>
-        <img src="{{MEDIA_URL}}images/{{user.username}}/{{file}}" class="top" width="100" height="100" />
+        <img src="{{MEDIA_URL}}images/{{user.username}}/{{file}}" class="top" width="100" height="100" alt="images"/>
 		<a href="delete_image/{{file}}"><img src="{{STATIC_URL}}images/delete.jpg" class="bottom" alt="delete"/></a> 
         </li>
     	{% endfor %}
