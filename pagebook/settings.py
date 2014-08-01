@@ -87,8 +87,6 @@ STATICFILES_FINDERS = (
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'u&amo8#z_vi)25tz8+ep5-nyolt%@3p2py3e!r_tdqzq1_%849'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -161,13 +159,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-TWITTER_CONSUMER_KEY         = 'l1sWTwCXMB4QsMd5oCXWA'
-TWITTER_CONSUMER_SECRET      = 'l0KF90MbUtCDRUicKslpLv6Cgl6YntO1JaKVEtxQ'
-FACEBOOK_APP_ID              = '252468388172907'
-FACEBOOK_API_SECRET          = '0e7ff493b23081db14919e7db5675640'
-GOOGLE_CONSUMER_KEY          = 'anonymous'
-GOOGLE_CONSUMER_SECRET       = 'anonymous'
-GOOGLE_DISPLAY_NAME          = 'Social Auth'
+
 
 LOGIN_URL =  '/'   
 LOGIN_REDIRECT_URL = '/'
